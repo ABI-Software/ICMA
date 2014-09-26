@@ -1,0 +1,239 @@
+digraph "" {
+  graph [packmode="clust", ranksep="1.0", style="rounded,filled", bgcolor="#F7F5F3", label="", fontname="Arial", fontsize="10", pack="true", compound="true", rankdir="LR", fillcolor="#FFFFCC"];
+  node [style="filled", color="grey", fixedsize="false", width="0.0", label="", fontname="Arial", fontsize="10", height="0.0", node_initialized="no", compound="true", fillcolor="white", shape="rectangle"];
+  edge [dir="forward", ltail="", lhead="", arrowsize="0.5", color="black", label="", fontname="Arial", fontsize="10", compound="true", arrowtail="none", arrowhead="normal", fontcolor="black"];
+  subgraph "cluster_1" {
+    graph [label="ejbModule", fillcolor="#FFFFCC"];
+    subgraph "cluster_3" {
+      graph [label="ejbModule/nz", fillcolor="#F0FFF0"];
+      subgraph "cluster_4" {
+        graph [label="ejbModule/nz/ac", fillcolor="#DFFFFF"];
+        subgraph "cluster_5" {
+          graph [label="ejbModule/nz/ac/auckland", fillcolor="#FFE5E2"];
+          subgraph "cluster_6" {
+            graph [label="ejbModule/nz/ac/auckland/abi", fillcolor="#FFFFCC"];
+            subgraph "cluster_8" {
+              graph [label="ejbModule/nz/ac/auckland/abi/icmaconfiguration", fillcolor="#F0FFF0"];
+              __N9 [style="invis,none", fixedsize="true", width="1.29167", label="", height="0.01", shape="none"];
+              __N40 [style="filled", label="ResourceInitializer.java", shape="box3d"];
+              __N47 [style="filled", label="CMSContent.java", shape="box3d"];
+              __N56 [style="filled", label="ResourceConfigurationManager.java", shape="box3d"];
+              __N60 [style="filled", label="BatchAdditionsManager.java", shape="box3d"];
+              __N128 [style="filled", label="ProcessManager.java", shape="box3d"];
+            }
+            subgraph "cluster_10" {
+              graph [label="ejbModule/nz/ac/auckland/abi/speckletracking", fillcolor="#F0FFF0"];
+              subgraph "cluster_24" {
+                graph [label="ejbModule/nz/ac/auckland/abi/speckletracking/wsclient", fillcolor="#DFFFFF"];
+                __N25 [style="invis,none", fixedsize="true", width="1.44444", label="", height="0.01", shape="none"];
+                __N64 [style="filled", label="ObjectFactory.java", shape="box3d"];
+                __N65 [style="filled", label="CleanUpResponse.java", shape="box3d"];
+                __N66 [style="filled", label="SubmitWithDisplacements.java", shape="box3d"];
+                __N67 [style="filled", label="GetImageArchive.java", shape="box3d"];
+                __N68 [style="filled", label="GetSpeckleTrackingXML.java", shape="box3d"];
+                __N69 [style="filled", label="GetSpeckleTrackingXMLResponse.java", shape="box3d"];
+                __N70 [style="filled", label="GetImageArchiveResponse.java", shape="box3d"];
+                __N71 [style="filled", label="SubmitWithDisplacementsResponse.java", shape="box3d"];
+                __N72 [style="filled", label="SubmitResponse.java", shape="box3d"];
+                __N73 [style="filled", label="GetDicomResponse.java", shape="box3d"];
+                __N74 [style="filled", label="GetCompletionResponse.java", shape="box3d"];
+                __N75 [style="filled", label="GetDicom.java", shape="box3d"];
+                __N76 [style="filled", label="Submit.java", shape="box3d"];
+                __N77 [style="filled", label="CleanUp.java", shape="box3d"];
+                __N78 [style="filled", label="GetCompletion.java", shape="box3d"];
+                __N102 [style="filled", label="package-info.java", shape="box3d"];
+                __N109 [style="filled", label="SpeckleTrackingServiceService.java", shape="box3d"];
+                __N111 [style="filled", label="AbstractCollection.java", shape="box3d"];
+                __N112 [style="filled", label="SpeckleTrackingService.java", shape="box3d"];
+                __N116 [style="filled", label="AbstractList.java", shape="box3d"];
+                __N118 [style="filled", label="ArrayList.java", shape="box3d"];
+                __N64 -> __N65 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N66 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N67 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N68 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N69 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N70 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N71 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N72 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N73 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N74 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N75 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N76 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N77 [dir="forward", color="blue3", label="2"];
+                __N64 -> __N78 [dir="forward", color="blue3", label="2"];
+              }
+              __N11 [style="invis,none", fixedsize="true", width="1.23611", label="", height="0.01", shape="none"];
+            }
+            subgraph "cluster_12" {
+              graph [label="ejbModule/nz/ac/auckland/abi/workflow", fillcolor="#F0FFF0"];
+              __N13 [style="invis,none", fixedsize="true", width="1.06944", label="", height="0.01", shape="none"];
+              __N41 [style="filled", label="WSWorkflowInfo.java", shape="box3d"];
+              __N92 [style="filled", label="WSWorkflowManager.java", shape="box3d"];
+              __N99 [style="filled", label="SegmentationXMLWrapper.java", shape="box3d"];
+              __N101 [style="filled", label="WSMRIModelFittingXMLInputEncoder.java", shape="box3d"];
+              __N103 [style="filled", label="MRIModelFittingInterface.java", shape="box3d"];
+              __N106 [style="filled", label="WSWorkflowManagerRemote.java", shape="box3d"];
+              __N119 [style="filled", label="SpeckleTrackingInterface.java", shape="box3d"];
+              __N123 [style="filled", label="SpeckleToFEMInterface.java", shape="box3d"];
+              __N125 [style="filled", label="WSSpeckleTrackingXMLInputEncoder.java", shape="box3d"];
+            }
+            subgraph "cluster_15" {
+              graph [label="ejbModule/nz/ac/auckland/abi/mrimodelfitting", fillcolor="#F0FFF0"];
+              __N16 [style="filled", label="ejbModule/nz/ac/auckland/abi/mrimodelfitting/wsclient", shape="box3d"];
+              __N31 [style="invis,none", fixedsize="true", width="1.22222", label="", height="0.01", shape="none"];
+            }
+            subgraph "cluster_18" {
+              graph [label="ejbModule/nz/ac/auckland/abi/administration", fillcolor="#F0FFF0"];
+              __N19 [style="invis,none", fixedsize="true", width="1.19444", label="", height="0.01", shape="none"];
+              __N52 [style="filled", label="ICMADatabaseSynchronizer.java", shape="box3d"];
+            }
+            subgraph "cluster_20" {
+              graph [label="ejbModule/nz/ac/auckland/abi/speckletofem", fillcolor="#F0FFF0"];
+              __N21 [style="filled", label="ejbModule/nz/ac/auckland/abi/speckletofem/wsclient", shape="box3d"];
+              __N32 [style="invis,none", fixedsize="true", width="1.18056", label="", height="0.01", shape="none"];
+            }
+            subgraph "cluster_26" {
+              graph [label="ejbModule/nz/ac/auckland/abi/dcm4chee", fillcolor="#F0FFF0"];
+              __N27 [style="invis,none", fixedsize="true", width="1.11111", label="", height="0.01", shape="none"];
+              __N46 [style="filled", label="PatientRecord.java", shape="box3d"];
+              __N55 [style="filled", label="StudyRecord.java", shape="box3d"];
+              __N83 [style="filled", label="DCMAccessManager.java", shape="box3d"];
+              __N84 [style="filled", label="InstanceRecord.java", shape="box3d"];
+              __N97 [style="filled", label="PACSStudyOperations.java", shape="box3d"];
+              __N104 [style="filled", label="ServerConfiguration.java", shape="box3d"];
+              __N105 [style="filled", label="ApplicationEntity.java", shape="box3d"];
+              __N107 [style="filled", label="StorageServiceEvent.java", shape="box3d"];
+              __N108 [style="filled", label="DicomFileHelper.java", shape="box3d"];
+              __N110 [style="filled", label="PACSConfiguration.java", shape="box3d"];
+              __N117 [style="filled", label="StorageService.java", shape="box3d"];
+              __N121 [style="filled", label="DCMConfigProperties.java", shape="box3d"];
+              __N124 [style="filled", label="PACSCallBackHandler.java", shape="box3d"];
+              __N126 [style="filled", label="ServerXmlConfiguration.java", shape="box3d"];
+              __N129 [style="filled", label="StorageServiceAdapter.java", shape="box3d"];
+              __N130 [style="filled", label="StorageServiceEventListener.java", shape="box3d"];
+              __N83 -> __N84 [dir="forward", color="blue3", label="5"];
+              __N83 -> __N46 [dir="forward", color="blue3", label="5"];
+              __N83 -> __N55 [dir="forward", color="blue3", label="5"];
+            }
+            subgraph "cluster_28" {
+              graph [label="ejbModule/nz/ac/auckland/abi/businesslogic", fillcolor="#F0FFF0"];
+              __N29 [style="invis,none", fixedsize="true", width="1.19444", label="", height="0.01", shape="none"];
+              __N42 [style="filled", label="USInstancesBean.java", shape="box3d"];
+              __N44 [style="filled", label="ICMADatabaseAdministration.java", shape="box3d"];
+              __N49 [style="filled", label="PatientSourceMapManager.java", shape="box3d"];
+              __N51 [style="filled", label="PatientSourceMapManagerRemote.java", shape="box3d"];
+              __N53 [style="filled", label="StudiesBean.java", shape="box3d"];
+              __N57 [style="filled", label="DataViewManager.java", shape="box3d"];
+              __N63 [style="filled", label="ICMAPatientRecord.java", shape="box3d"];
+              __N79 [style="filled", label="PatientsBean.java", shape="box3d"];
+              __N80 [style="filled", label="MRInstancesBean.java", shape="box3d"];
+              __N81 [style="filled", label="StudiesBeanRemote.java", shape="box3d"];
+              __N82 [style="filled", label="PatientsBeanRemote.java", shape="box3d"];
+              __N85 [style="filled", label="MRInstancesBeanRemote.java", shape="box3d"];
+              __N86 [style="filled", label="FEMModelsBeanRemote.java", shape="box3d"];
+              __N87 [style="filled", label="ModelViewBean.java", shape="box3d"];
+              __N90 [style="filled", label="FEMModelsBean.java", shape="box3d"];
+              __N91 [style="filled", label="USInstancesBeanRemote.java", shape="box3d"];
+              __N120 [style="filled", label="ICMADatabaseAdministrationRemote.java", shape="box3d"];
+              __N127 [style="filled", label="ModelViewBeanRemote.java", shape="box3d"];
+              __N133 [style="filled", label="DataViewManagerRemote.java", shape="box3d"];
+            }
+            subgraph "cluster_33" {
+              graph [label="ejbModule/nz/ac/auckland/abi/entities", fillcolor="#F0FFF0"];
+              __N34 [style="invis,none", fixedsize="true", width="1.02778", label="", height="0.01", shape="none"];
+              __N43 [style="filled", label="USStudyInstances.java", shape="box3d"];
+              __N45 [style="filled", label="Patient.java", shape="box3d"];
+              __N48 [style="filled", label="FEMModelModification.java", shape="box3d"];
+              __N50 [style="filled", label="PatientSource.java", shape="box3d"];
+              __N54 [style="filled", label="PACSStudy.java", shape="box3d"];
+              __N58 [style="filled", label="FEMModel.java", shape="box3d"];
+              __N59 [style="filled", label="MRStudyInstances.java", shape="box3d"];
+              __N88 [style="filled", label="ModelView.java", shape="box3d"];
+              __N100 [style="filled", label="PACSStudyPK.java", shape="box3d"];
+            }
+            subgraph "cluster_35" {
+              graph [label="ejbModule/nz/ac/auckland/abi/helper", fillcolor="#F0FFF0"];
+              __N36 [style="invis,none", fixedsize="true", width="1.01389", label="", height="0.01", shape="none"];
+              __N61 [style="filled", label="PatientJobRecord.java", shape="box3d"];
+              __N89 [style="filled", label="PACSInstanceprocessor.java", shape="box3d"];
+              __N93 [style="filled", label="WSDicomDownloader.java", shape="box3d"];
+              __N95 [style="filled", label="JNDILookupClass.java", shape="box3d"];
+              __N96 [style="filled", label="DICOMMetaDataFilter.java", shape="box3d"];
+              __N113 [style="filled", label="ProcessSpeckleTrackingOutput.java", shape="box3d"];
+              __N114 [style="filled", label="ICMAMetaData.java", shape="box3d"];
+              __N115 [style="filled", label="MRIFitData.java", shape="box3d"];
+              __N122 [style="filled", label="DICOMInstanceProcessor.java", shape="box3d"];
+              __N132 [style="filled", label="SpeckleToFEMXMLInputGenerator.java", shape="box3d"];
+            }
+            subgraph "cluster_37" {
+              graph [label="ejbModule/nz/ac/auckland/abi/dicomprocessing", fillcolor="#F0FFF0"];
+              __N38 [style="invis,none", fixedsize="true", width="1.27778", label="", height="0.01", shape="none"];
+              __N62 [style="filled", label="Moviemaker.java", shape="box3d"];
+              __N94 [style="filled", label="DICOMTOMOVIEInterface.java", shape="box3d"];
+              __N98 [style="filled", label="Dicom2Movie.java", shape="box3d"];
+              __N131 [style="filled", label="DicomSeries2Movie.java", shape="box3d"];
+            }
+            __N7 [style="invis,none", fixedsize="true", width="0.847222", label="", height="0.01", shape="none"];
+            __N40 -> __N41 [dir="forward", color="blue3", label="3"];
+            __N42 -> __N43 [dir="forward", color="blue3", label="2"];
+            __N44 -> __N45 [dir="forward", color="blue3", label="3"];
+            __N44 -> __N46 [dir="forward", color="blue3", label="3"];
+            __N44 -> __N47 [dir="forward", color="blue3", label="1"];
+            __N44 -> __N48 [dir="forward", color="blue3", label="1"];
+            __N49 -> __N50 [dir="forward", color="blue3", label="3"];
+            __N51 -> __N50 [dir="forward", color="blue3", label="1"];
+            __N52 -> __N48 [dir="forward", color="blue3", label="1"];
+            __N52 -> __N45 [dir="forward", color="blue3", label="3"];
+            __N52 -> __N50 [dir="forward", color="blue3", label="3"];
+            __N52 -> __N46 [dir="forward", color="blue3", label="1"];
+            __N53 -> __N54 [dir="forward", color="blue3", label="3"];
+            __N53 -> __N55 [dir="forward", color="blue3", label="1"];
+            __N56 -> __N41 [dir="forward", color="blue3", label="1"];
+            __N57 -> __N58 [dir="forward", color="blue3", label="2"];
+            __N57 -> __N48 [dir="forward", color="blue3", label="1"];
+            __N57 -> __N54 [dir="forward", color="blue3", label="1"];
+            __N57 -> __N43 [dir="forward", color="blue3", label="1"];
+            __N57 -> __N59 [dir="forward", color="blue3", label="1"];
+            __N57 -> __N45 [dir="forward", color="blue3", label="1"];
+            __N60 -> __N61 [dir="forward", color="blue3", label="2"];
+            __N60 -> __N62 [dir="forward", color="blue3", label="4"];
+            __N63 -> __N59 [dir="forward", color="blue3", label="3"];
+            __N63 -> __N43 [dir="forward", color="blue3", label="3"];
+            __N63 -> __N54 [dir="forward", color="blue3", label="4"];
+            __N63 -> __N58 [dir="forward", color="blue3", label="3"];
+            __N63 -> __N55 [dir="forward", color="blue3", label="1"];
+            __N79 -> __N45 [dir="forward", color="blue3", label="5"];
+            __N80 -> __N59 [dir="forward", color="blue3", label="2"];
+            __N81 -> __N54 [dir="forward", color="blue3", label="1"];
+            __N82 -> __N45 [dir="forward", color="blue3", label="2"];
+            __N85 -> __N59 [dir="forward", color="blue3", label="1"];
+            __N86 -> __N58 [dir="forward", color="blue3", label="2"];
+            __N61 -> __N54 [dir="forward", color="blue3", label="2"];
+            __N61 -> __N62 [dir="forward", color="blue3", label="3"];
+            __N61 -> __N59 [dir="forward", color="blue3", label="3"];
+            __N61 -> __N55 [dir="forward", color="blue3", label="5"];
+            __N61 -> __N84 [dir="forward", color="blue3", label="5"];
+            __N61 -> __N58 [dir="forward", color="blue3", label="3"];
+            __N61 -> __N43 [dir="forward", color="blue3", label="3"];
+            __N87 -> __N88 [dir="forward", color="blue3", label="2"];
+            __N89 -> __N43 [dir="forward", color="blue3", label="3"];
+            __N89 -> __N58 [dir="forward", color="blue3", label="4"];
+            __N89 -> __N84 [dir="forward", color="blue3", label="1"];
+            __N90 -> __N48 [dir="forward", color="blue3", label="9"];
+            __N90 -> __N58 [dir="forward", color="blue3", label="6"];
+            __N90 -> __N47 [dir="forward", color="blue3", label="1"];
+            __N91 -> __N43 [dir="forward", color="blue3", label="1"];
+            __N92 -> __N47 [dir="forward", color="blue3", label="4"];
+          }
+          __N17 [style="invis,none", fixedsize="true", width="0.75", label="", height="0.01", shape="none"];
+        }
+        __N14 [style="invis,none", fixedsize="true", width="0.513889", label="", height="0.01", shape="none"];
+      }
+      __N22 [style="invis,none", fixedsize="true", width="0.444444", label="", height="0.01", shape="none"];
+    }
+    __N2 [style="filled", label="ejbModule/resources", shape="box3d"];
+    __N23 [style="filled", label="ejbModule/META-INF", shape="box3d"];
+    __N30 [style="invis,none", fixedsize="true", width="0.361111", label="", height="0.01", shape="none"];
+  }
+  __N39 [style="filled", label="build", shape="box3d"];
+}

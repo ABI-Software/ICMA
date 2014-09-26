@@ -1,0 +1,14 @@
+
+org/dcm4che2/imageio/plugins/dcm
+META-INF/maven/dcm4che
+org/dcm4che2/imageio
+org/dcm4che2/imageioimpl
+META-INF/maven
+org/dcm4che2/imageioimpl/plugins/dcm
+org/dcm4che2/imageio/plugins
+org
+org/dcm4che2/imageioimpl/plugins
+META-INF
+META-INF/maven/dcm4che/dcm4che-imageio
+org/dcm4che2
+META-INF/services

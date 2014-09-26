@@ -1,0 +1,87 @@
+ICMA 1.0 Release Notes
+======================
+
+1. Download Jboss As 7.1.1 Application server (JDK 7.0 is required for the ICMA code)
+2. Install the server on your server
+3. Create a directory named abi in modules/com directory of the jboss installation
+4. Add the contents from Module/com/abi to this directory. Note that these contents are used while building the classes 
+   and should be in the CLASSPATH for successful compilation 
+5. Install mysql, ICMA uses large data packets. The default mysql settings are not sufficient
+   Update the configuration file mysql/my.cnf and set the max_allowed_packet to 128M  
+6. Create a documentstore database in the mysql instance
+6.1 Login to mysql as root 
+	mysql> CREATE DATABASE documentstore;
+	
+6.2 Grant access to icma user 
+    (The user name and password can be changed but this must be reflected in the standalone.xml
+     datasource setup. Also if the mysql instance is not local, ensure that 'localhost' has the ip address
+     of the server from which the instance will be accessed i.e the jboss-server ip)
+      
+	mysql> grant all on documentstore.* to 'icma'@'localhost' identified by 'abiecho';
+	
+7. Create icmadb database 
+7.1 Login to mysql as root
+	mysql> CREATE DATABASE icmadb;
+
+7.2 Grant access to icma user 
+    (The user name and password can be changed but this must be reflected in the standalone.xml
+     datasource setup. Also if the mysql instance is not local, ensure that 'localhost' has the ip address
+     of the server from which the instance will be accessed i.e the jboss-server ip)
+      
+	mysql> grant all on icmadb.* to 'icma'@'localhost' identified by 'abiecho';
+	mysql> \q
+7.3 Create the icmadb tables (mysql file in SQL folder)
+     mysql -uicma -pabiecho icmadb < icmasql.mysql
+ 
+8. Add jackrabbit JCR to jboss installation
+	Copy the  jackrabbit-jca-2.6.0.rar file in Jackrabbit directory to the jboss deployments directory
+9. Create a scratch folder (a folder for creating temporary files by ICMA)  on the server (lets call it /FOLDER/ICMASCRATCH)
+10. Build the C++ modules and store them at appropriate locations
+11. Setup jboss
+11.1 Edit the standalone.xml file in the jboss configurations directory
+11.2 Setup the datasources as shown in line 94 of the sample standalone.xml file in the ConfigurationFiles directory
+11.3 Setup webservices
+	 SpeckleFittingJboss, SpeckleTrackingJboss and MRIModelFittingJboss projects wrap the C++ modules as webservices
+	 These services can be installed on different jboss instances. The location of the C++ modules are linked to the
+	 service by the JNDI name. For instance, the entries 
+ 	 <simple name="java:global/ICMAMRIMODELFITTING" value="/FOLDER/LVModelBasedMRIModelFitting/LVModelBasedMRIModelFitting" type="java.lang.String"/>
+     <simple name="java:global/ICMAMRIMODELFITTINGDIR" value="/FOLDER/ICMASCRATCH" type="java.lang.String"/>
+     <simple name="java:global/ICMAMRIMODELMEASURE" value="/FOLDER/MRIModelStrainMeasures/MRIModelStrainMeasures" type="java.lang.String"/>
+     <simple name="java:global/ICMAMRIMODELMEASUREDIR" value="/FOLDER/ICMASCRATCH" type="java.lang.String"/>
+     in the standalone.xml file connect the two C++ modules required by the MRI model fitting service. Note that each C++ module also requires
+     a scratch directory which is identified by the suffice DIR
+11.4 Setup video coding services
+	Install ffmpeg, with web-codes
+	Setup the JNDI name links
+	<simple name="java:global/ICMADCM2MOVIE" value="/FOLDER/Dicom2Movie/movie" type="java.lang.String"/>
+    <simple name="java:global/ICMADCM2MOVIEDIR" value="/FOLDER/ICMASCRATCH" type="java.lang.String"/>
+    <simple name="java:global/ICMADCMSERIES2MOVIE" value="/FOLDER/DicomSeries2Movie/movie" type="java.lang.String"/>
+    <simple name="java:global/ICMADCMSERIES2MOVIEDIR" value="/FOLDER/ICMASCRATCH" type="java.lang.String"/>  
+	Setup the location of the ffmpeg executable( here /usr/bin/ffmpeg) 
+	<simple name="java:global/FFMEPGEXEC" value="/usr/bin/ffmpeg" type="java.lang.String"/> 
+	  
+11.3 Setup the links to webservices as shown in line 247 to 250. Here the webservices are hosted by the same jboss instance. 
+	In case these services are hosted else where, the handle should reflect the service address
+
+11.5 Setup jackrabbit
+	Add the section <subsystem xmlns="urn:jboss:domain:resource-adapters:1.0"> to the standalone.xml file as shown in lines 275-300
+
+11.6 Setup pacs
+	Set the ip address of the pacs server, pacs port and wado port and pacs dicom protocol (here it is running on the local server and wado is port 9090)
+	<simple name="java:global/PACSHOSTNAME" value="127.0.0.1" type="java.lang.String"/>
+    <simple name="java:global/PACSPORT" value="11112" type="java.lang.String"/>
+    <simple name="java:global/PACSWADOPORT" value="9090" type="java.lang.String"/>
+    <simple name="java:global/PACSDCMPROTOCOL" value="DICOM" type="java.lang.String"/>
+	
+12. Setup memory option of jboss
+    Edit the standalone.conf file in jbossxxxx/bin directory
+    Increase the JAVA memory options to something like this or higher
+    -Xms1024m -Xmx2048m -XX:MaxPermSize=512m  	
+
+13. Start jboss server by running jbossxxxx/bin/standalone.sh    
+		
+
+ 
+Code organization
+=================
+The graphs folder provides some information on module interactions in the form of image and a dot files (viewed using Graphviz compatible viewers)    

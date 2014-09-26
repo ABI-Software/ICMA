@@ -1,0 +1,260 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `FEMModel`
+--
+
+DROP TABLE IF EXISTS `FEMModel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FEMModel` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
+  `sopid` varchar(500) NOT NULL,
+  `pat_id` varchar(45) NOT NULL,
+  `study_id` varchar(500) NOT NULL,
+  `series_id` varchar(500) NOT NULL,
+  `Author` varchar(500) NOT NULL,
+  `Annotation` varchar(4000) NOT NULL,
+  `model_name` varchar(100) NOT NULL,
+  `model_status` varchar(45) NOT NULL DEFAULT 'SUBMITTED',
+  `image_uri_xml` blob,
+  `Field_ml_uri_xml` blob,
+  `metadata` longblob,
+  PRIMARY KEY (`pk`),
+  KEY `study_id_fk` (`study_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Finite element models associated with the application';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `FEMModelModification`
+--
+
+DROP TABLE IF EXISTS `FEMModelModification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FEMModelModification` (
+  `idFEMModelModification` int(11) NOT NULL AUTO_INCREMENT,
+  `fem_model_pk` int(11) NOT NULL,
+  `Actor` varchar(100) NOT NULL,
+  `Action` int(11) NOT NULL,
+  `metadata` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idFEMModelModification`),
+  KEY `fk_FEMModel` (`fem_model_pk`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Modifications transactions applied to FEMModels are saved';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `MRStudyInstances`
+--
+
+DROP TABLE IF EXISTS `MRStudyInstances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MRStudyInstances` (
+  `study_id` varchar(500) NOT NULL,
+  `instance_id` varchar(500) NOT NULL,
+  `series_id` varchar(500) NOT NULL,
+  `position_patient` varchar(500) NOT NULL,
+  `orientation_patient` varchar(500) NOT NULL,
+  `head_shot_uri` varchar(500) NOT NULL,
+  `mp4_uri` varchar(1500) DEFAULT NULL,
+  `webm_uri` varchar(1500) DEFAULT NULL,
+  `ogv_uri` varchar(1500) DEFAULT NULL,
+  `preamble` varchar(1500) DEFAULT NULL,
+  `metadata` blob,
+  PRIMARY KEY (`study_id`,`instance_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='The instance associated with a MRI study';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary table structure for view `ModelView`
+--
+
+DROP TABLE IF EXISTS `ModelView`;
+/*!50001 DROP VIEW IF EXISTS `ModelView`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `ModelView` (
+  `model_pk` tinyint NOT NULL,
+  `pat_id` tinyint NOT NULL,
+  `pat_name` tinyint NOT NULL,
+  `pat_sex` tinyint NOT NULL,
+  `pat_birthdate` tinyint NOT NULL,
+  `study_date` tinyint NOT NULL,
+  `model_id` tinyint NOT NULL,
+  `model_name` tinyint NOT NULL,
+  `model_status` tinyint NOT NULL,
+  `Annotation` tinyint NOT NULL,
+  `metadata` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `PACSStudy`
+--
+
+DROP TABLE IF EXISTS `PACSStudy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PACSStudy` (
+  `pat_id` varchar(45) NOT NULL,
+  `study_id` varchar(500) NOT NULL,
+  `study_date` varchar(45) NOT NULL,
+  `study_type` varchar(5) NOT NULL DEFAULT 'US',
+  `study_description` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`pat_id`,`study_id`),
+  KEY `fk_PACSpatient` (`pat_id`),
+  CONSTRAINT `fk_PACSpatient` FOREIGN KEY (`pat_id`) REFERENCES `Patient` (`pat_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='List of studies associated with patients. All the studies in';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Patient`
+--
+
+DROP TABLE IF EXISTS `Patient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Patient` (
+  `idPACSPatient` int(11) NOT NULL AUTO_INCREMENT,
+  `pat_id` varchar(45) NOT NULL,
+  `pat_name` varchar(255) NOT NULL,
+  `pat_birthdate` varchar(45) DEFAULT NULL,
+  `pat_sex` varchar(15) DEFAULT NULL,
+  `active` int(1) NOT NULL,
+  PRIMARY KEY (`idPACSPatient`),
+  UNIQUE KEY `pat_id_UNIQUE` (`pat_id`),
+  UNIQUE KEY `idPACSPatient_UNIQUE` (`idPACSPatient`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `PatientSource`
+--
+
+DROP TABLE IF EXISTS `PatientSource`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PatientSource` (
+  `id` varchar(100) NOT NULL,
+  `name` varchar(500) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `USStudyInstances`
+--
+
+DROP TABLE IF EXISTS `USStudyInstances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `USStudyInstances` (
+  `study_id` varchar(500) NOT NULL,
+  `instance_id` varchar(500) NOT NULL,
+  `series_id` varchar(500) NOT NULL,
+  `size` decimal(4,0) NOT NULL DEFAULT '0',
+  `weight` decimal(4,0) NOT NULL DEFAULT '0',
+  `head_shot_uri` varchar(500) NOT NULL,
+  `mp4_uri` varchar(1500) DEFAULT NULL,
+  `webm_uri` varchar(1500) DEFAULT NULL,
+  `ogv_uri` varchar(1500) DEFAULT NULL,
+  `movie_metadata` varchar(500) DEFAULT NULL,
+  `metadata` blob,
+  PRIMARY KEY (`study_id`,`instance_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='The instances associated with a Ultrasound study';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `UserRoles`
+--
+
+DROP TABLE IF EXISTS `UserRoles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UserRoles` (
+  `username` varchar(255) NOT NULL,
+  `userRoles` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='ICMA User roles';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Users`
+--
+
+DROP TABLE IF EXISTS `Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Users` (
+  `username` varchar(255) NOT NULL,
+  `passwd` varchar(64) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='ICMA usernames and passwords';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Final view structure for view `ModelView`
+--
+
+/*!50001 DROP TABLE IF EXISTS `ModelView`*/;
+/*!50001 DROP VIEW IF EXISTS `ModelView`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ModelView` AS select `model`.`pk` AS `model_pk`,`patient`.`pat_id` AS `pat_id`,`patient`.`pat_name` AS `pat_name`,`patient`.`pat_sex` AS `pat_sex`,`patient`.`pat_birthdate` AS `pat_birthdate`,`study`.`study_date` AS `study_date`,`model`.`sopid` AS `model_id`,`model`.`model_name` AS `model_name`,`model`.`model_status` AS `model_status`,`model`.`Annotation` AS `Annotation`,`model`.`metadata` AS `metadata` from ((`FEMModel` `model` join `PACSStudy` `study`) join `Patient` `patient`) where ((`model`.`study_id` = `study`.`study_id`) and (`model`.`pat_id` = `patient`.`pat_id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Create Administrative user and roles
+--
+
+
+LOCK TABLES `UserRoles` WRITE;
+/*!40000 ALTER TABLE `UserRoles` DISABLE KEYS */;
+INSERT INTO `UserRoles` VALUES ('Admin','ICMAUSER'),('Admin','ICMAADMIN');
+/*!40000 ALTER TABLE `UserRoles` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES ('Admin','h7WqRjJ9tET0Or/Fwg1x2Bxmxmw=');
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

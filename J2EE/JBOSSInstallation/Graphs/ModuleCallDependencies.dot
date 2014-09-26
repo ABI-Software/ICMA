@@ -1,0 +1,76 @@
+digraph "" {
+  graph [packmode="clust", ranksep="1.0", bgcolor="#F7F5F3", pack="true", fontname="Arial", fontsize="10", style="rounded,filled", compound="true", rankdir="LR", label="", fillcolor="#FFFFCC"];
+  node [shape="rectangle", node_initialized="no", style="filled", fontname="Arial", fontsize="10", fixedsize="false", compound="true", color="grey", height="0.0", width="0.0", label="", fillcolor="white"];
+  edge [arrowhead="normal", fontcolor="black", arrowsize="0.5", ltail="", dir="forward", fontname="Arial", fontsize="10", lhead="", color="black", compound="true", label="", arrowtail="none"];
+  subgraph "cluster_1" {
+    graph [label="Java", fillcolor="#FFFFCC"];
+    subgraph "cluster_2" {
+      graph [label="Java/ejbModule", fillcolor="#F0FFF0"];
+      subgraph "cluster_3" {
+        graph [label="Java/ejbModule/nz", fillcolor="#DFFFFF"];
+        subgraph "cluster_4" {
+          graph [label="Java/ejbModule/nz/ac", fillcolor="#FFE5E2"];
+          subgraph "cluster_5" {
+            graph [label="Java/ejbModule/nz/ac/auckland", fillcolor="#FFFFCC"];
+            subgraph "cluster_11" {
+              graph [label="Java/ejbModule/nz/ac/auckland/abi", fillcolor="#F0FFF0"];
+              __N12 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/administration"];
+              __N13 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/entities"];
+              __N14 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/dcm4chee"];
+              __N15 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/businesslogic"];
+              __N16 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/icmaconfiguration"];
+              __N19 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/workflow"];
+              __N20 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/speckletofem"];
+              __N21 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/speckletracking"];
+              __N22 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/mrimodelfitting"];
+              __N23 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/helper"];
+              __N26 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="2.91667", label=""];
+              __N28 [shape="box3d", style="filled", label="Java/ejbModule/nz/ac/auckland/abi/dicomprocessing"];
+              __N12 -> __N13 [dir="forward", color="blue3", label="12"];
+              __N12 -> __N14 [dir="forward", color="blue3", label="4"];
+              __N12 -> __N15 [dir="forward", color="blue3", label="7"];
+              __N12 -> __N16 [dir="forward", color="blue3", label="1"];
+              __N19 -> __N13 [dir="forward", color="blue3", label="2"];
+              __N19 -> __N20 [dir="forward", color="blue3", label="6"];
+              __N19 -> __N15 [dir="forward", color="blue3", label="6"];
+              __N19 -> __N21 [dir="forward", color="blue3", label="7"];
+              __N19 -> __N22 [dir="forward", color="blue3", label="5"];
+              __N19 -> __N16 [arrowhead="diamond", dir="both", color="red3", label="25 / 5", arrowtail="diamond"];
+              __N19 -> __N23 [arrowhead="diamond", dir="both", color="red3", label="5 / 1", arrowtail="diamond"];
+              __N15 -> __N13 [dir="forward", color="blue3", label="149"];
+              __N15 -> __N14 [dir="forward", color="blue3", label="20"];
+              __N15 -> __N16 [arrowhead="diamond", dir="both", color="red3", label="23 / 1", arrowtail="diamond"];
+              __N15 -> __N23 [arrowhead="diamond", dir="both", color="red3", label="20 / 1", arrowtail="diamond"];
+              __N23 -> __N13 [arrowhead="diamond", dir="both", color="red3", label="13 / 2", arrowtail="diamond"];
+              __N23 -> __N28 [dir="forward", color="blue3", label="28"];
+              __N23 -> __N14 [dir="forward", color="blue3", label="51"];
+              __N23 -> __N16 [arrowhead="diamond", dir="both", color="red3", label="31 / 5", arrowtail="diamond"];
+              __N16 -> __N28 [dir="forward", color="blue3", label="3"];
+              __N16 -> __N14 [dir="forward", color="blue3", label="5"];
+            }
+            __N6 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="2.625", label=""];
+          }
+          __N25 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="1.86111", label=""];
+        }
+        __N24 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="1.61111", label=""];
+      }
+      __N29 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="1.375", label=""];
+    }
+    __N7 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="0.486111", label=""];
+  }
+  subgraph "cluster_8" {
+    graph [label="Xml", fillcolor="#FFFFCC"];
+    subgraph "cluster_9" {
+      graph [label="Xml/ejbModule", fillcolor="#F0FFF0"];
+      subgraph "cluster_17" {
+        graph [label="Xml/ejbModule/resources", fillcolor="#DFFFFF"];
+        __N18 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="2.15278", label=""];
+        __N32 [shape="box3d", style="filled", label="dcm4chee-config.xml"];
+      }
+      __N10 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="1.30556", label=""];
+      __N31 [shape="box3d", style="filled", label="Xml/ejbModule/META-INF"];
+    }
+    __N27 [shape="box3d", style="filled", label="Xml/build"];
+    __N30 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="0.416667", label=""];
+  }
+}
