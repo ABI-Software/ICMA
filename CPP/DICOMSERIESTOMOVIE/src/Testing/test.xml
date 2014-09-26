@@ -1,0 +1,11 @@
+<ICMA>
+	<OUTPUTDIRECTORY>
+		./output
+	</OUTPUTDIRECTORY>
+	<FILE>
+		<NAME>
+		ICMA	
+		</NAME>
+		<URI>./SeriesDataAll</URI>
+	</FILE>
+</ICMA>

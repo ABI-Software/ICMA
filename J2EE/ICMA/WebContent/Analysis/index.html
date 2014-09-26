@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta charset="UTF-8">
+<link type="text/css" href="./css/cupertino/jquery-ui-1.7.2.custom.css"
+	rel="stylesheet" />
+<link type="text/css" href="./css/demo_page.css" rel="stylesheet" />
+<link type="text/css" href="./css/demo_table.css" rel="stylesheet" />
+<script src="./js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="./js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="./js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="./js/jquery.fileDownload.js" type="text/javascript"></script>
+<style type="text/css">
+#fieldWrapper {
+	
+}
+
+#formNavigation {
+	margin-top: 0.5em;
+	margin-right: 1em;
+	text-align: right;
+}
+
+#data {
+	font-size: 0.7em;
+}
+
+input {
+	margin-right: 0.1em;
+	margin-bottom: 0.5em;
+}
+
+.input_field_25em {
+	width: 2.5em;
+}
+
+.input_field_3em {
+	width: 3em;
+}
+
+.input_field_35em {
+	width: 3.5em;
+}
+
+.input_field_12em {
+	width: 12em;
+}
+
+label {
+	margin-bottom: 0.2em;
+	font-weight: bold;
+	font-size: 0.8em;
+	display: block;
+	width: 20em;
+	float: left;
+}
+
+.smallLabel {
+	margin-bottom: 0.2em;
+	font-weight: bold;
+	font-size: 0.8em;
+	display: block;
+	width: 10em;
+	float: left;
+}
+
+label.error {
+	color: red;
+	font-size: 0.8em;
+	margin-left: 0.5em;
+}
+
+.step span {
+	float: right;
+	font-weight: bold;
+	padding-right: 0.8em;
+}
+
+.navigation_button {
+	width: 70px;
+}
+
+#data {
+	overflow: auto;
+}
+</style>
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+<script type="text/javascript" src="./js/jquery.validate.js"></script>
+<script type="text/javascript" src="./js/bbq.js"></script>
+<script type="text/javascript" src="./js/jquery.form.wizard.js"></script>
+<script type="text/javascript" src="./js/Analysis.js"></script>
+
+<title>Integrated Cardiac Modelling and Analysis</title>
+</head>
+<body class="ui-widget">
+	<div class="ui-widget-header">
+		<h1>Integrated Cardiac Modelling and Analysis</h1>
+		<div class="ui-widget-content">
+		<input type="button" value="Logout" id="logout" style="float:right"/>
+		</div>
+		<h2>Model data analysis</h2>
+	</div>
+	<div id="demoWrapper">
+		<form id="demoForm" method="post" action="reset.html" class="bbq">
+			<div id="state"></div>
+			<div id="fieldWrapper">
+				<span class="step" id="first"> <span
+					class="font_normal_07em_black">Select parameters to Filter
+						models</span> <br />
+					<div>
+						<table>
+							<tr>
+								<td>
+									<h3>Existing reports</h3>
+									<table id="existingreportstable" class="display"
+										cellpadding="0" cellspacing="1" >
+										<thead>
+											<tr>
+												<th>Report Name</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td colspan="5" class="dataTables_empty">Loading data
+													from server</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+								<td>
+									<h3>Create new reports</h3>
+								<label for="sAnyField">Any field matching</label> <br />
+									<input type="textbox" value="" name="sAnyField" id="sAnyField">
+									<br />
+									<hr>
+									<div>
+										<br /> <label for="PatientID">PatientID</label> <input
+											type="textbox" name="PatientID" value=""> <select
+											name="selPatientID" id="selPat">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="Gender">Gender</label> <input
+											type="textbox" value="" name="Gender"> <select
+											name="selGender">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="Status">Status</label> <input
+											type="textbox" value="" name="Status"> <select
+											name="selStatus">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="StudyType">Study Type</label> <input
+											type="textbox" value="" name="StudyType"> <select
+											name="selStudyType">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="SpecialClassification">Special
+											Classification</label> <input type="textbox" value=""
+											name="SpecialClassification"> <select
+											name="selSpecialClassification">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="GravitationalConditioning">Gravitational
+											Conditioning</label> <input type="textbox" value=""
+											name="GravitationalConditioning"> <select
+											name="selGravitationalConditioning">
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+										</select> <br /> <label for="HashTags"># Tags</label> <input
+											type="textbox" value="" name="HashTags">
+									</div></td>
+							</tr>
+						</table>
+					</div>
+
+				</span> <span id="modelSelection" class="step "> <span
+					class="font_normal_07em_black">Select models for processing</span>
+					<br />
+					<div class="ui-widget-content">
+						<table id="models_table" class="display" cellpadding="0"
+							cellspacing="1">
+							<thead>
+								<tr>
+									<th title="id">Patient ID</th>
+									<th title="name">Name</th>
+									<th title="gender">Gender</th>
+									<th title="birthdate">Birth Date</th>
+									<th title="counter">Number of Models</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5" class="dataTables_empty">Loading data from
+										server</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</span> <span id="confirmation" class="step submit_step"> <span
+					class="font_normal_07em_black">Generate Analysis Graphs</span> <br />
+					<div style="margin-left: 150px">
+						<table>
+							<tr>
+								<td>
+									<h2>Analysis Variable</h2>
+									<div style="width: 300px">
+										<label for="name">Name</label> <input name="name" id="name"></input>
+										<label for="exp">Expression</label> <input name="exp" id="exp"></input>
+										<br /> <br /> <br />
+										<button type="button" id="addVariable">Add Variable</button>
+									</div> <br />
+									<button type="button" id="helpButton">Help</button>
+								</td>
+								<td>
+									<div class="ui-widget-content" style="width: 600px">
+										<table id="variables" class="display">
+											<thead>
+												<tr>
+													<th title="name">Variable name</th>
+													<th title="exp">Expression</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>AVG</td>
+													<td>AVERAGE(S1:S16)</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>&nbsp</td>
+								<td>
+									<input name="reportName" id="reportName"></input>
+									<button type="button" id="generateReport">Generate
+										Report</button> 
+								</td>
+							</tr>
+						</table>
+					</div>
+				</span>
+			</div>
+			<div id="formNavigation">
+				<input class="navigation_button" id="back" value="Reset"
+					type="reset" />
+			    <input class="navigation_button" id="next"
+					value="Submit" type="submit" />
+			</div>
+		</form>
+		<hr />
+	</div>
+	<div id="dialog-message" title="Analysis definitions"
+		style="display: none;">
+		<p>
+		<h1>Analysis Variable</h1>
+		The user control <b>Analysis Variable</b> defines a variable that will
+		be used to characterize a model and compare it against other models.
+		The strain values of a standard 16 segment model are named S1...S16.
+		<center>
+			<img src="images/bullseye-200.png">
+		</center>
+		<br> These values can be used to compose the <b> Analysis
+			Variable</b>. Any expression that is a valid MS EXCEL/ Open Office
+		formula using S1...S16 is admitted. <br>
+		<h1>Modifying expressions</h1>
+		To edit or remove an Analysis variable, double click on the row. This
+		will open a dialog where the variable can be edited.
+		</p>
+		<h2>Report names should not contain spaces or special characters, _ could be used</h2>
+	</div>
+	<div id="Modify" title="Analysis definition editor">
+		<fieldset>
+			<label for="name">Name</label> <input name="name" id="ename"></input>
+			<label for="exp">Expression</label> <input name="exp" id="eexp"></input>
+		</fieldset>
+	</div>
+	<div id="ModelNotes" title="Notes"></div>
+</body>
+</html>

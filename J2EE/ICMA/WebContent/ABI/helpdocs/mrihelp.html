@@ -1,0 +1,111 @@
+<head>
+<link rel="stylesheet" href="ABI/app/ICMA/Main.css" type="text/css"
+	media="screen" title="no title" charset="utf-8">
+<script type="text/javascript" src="dojo/dojo.js"
+	data-dojo-config="async: 1, parseOnLoad: true"></script>
+<title>Patient MRI Dashboard</title>
+</head>
+<body class="claro">
+	<div style="height: 400px; overflow: auto">
+		<div id="titleGroupMRI" data-dojo-type="dojox.widget.TitleGroup">
+			<div data-dojo-type="dijit.TitlePane" open="true"
+				title="Patient MRI Dashboard">
+				<h2>Patient MRI Dashboard</h2>
+				<p>The MRI dashboard provides integrated access to the patient&#8217;s
+					MRI studies. Each study is presented as a tab and consists of
+					observations along one or more MRI view axis. Each view is
+					associated with some metadata. By default the cine and metadata
+					associated with the first view in the &#8216;Views&#8216; portal is loaded when
+					a study tab is selected. The cine can be played or queried using
+					the playable video widget at the centre of the dashboard.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane" title="Initial View Controls"
+				open="false" style="overflow: auto">
+				<h2>Initial View Controls</h2>
+				<p>
+					<img width="601" height="275"
+						src="./ABI/helpdocs/MRI.png" />
+				</p>
+
+				<p>1. List of MRI studies currently available for the patient</p>
+				<p>2. The Date and time of the MRI study</p>
+				<p>3. Selected metadata for view recording</p>
+				<p>4. Reset control point information</p>
+				<p>5. Button to move to the end diastole (ED) frame</p>
+				<p>6. Button to move to the end systole (ES) frame</p>
+				<p>7. Button to set the end of cardiac cycle</p>
+				<p>V. Video widget to play cine associated with view, to seek
+					time points of interest and select control points.</p>
+				<p>S. View organiser, lists all the views that are associated
+					with the study. The current view displayed in V is highlighted with
+					a light shadow. Another view can be loaded by clicking on its image
+					in the view organiser.</p>
+				<p>I. Controls to select the imaging slices to be displayed in the 3D widget</p>	
+				<p>P. Control to start the model fitting process</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane"
+				title="Model fitting and strain analysis" open="false">
+				<h2>Model fitting and strain analysis</h2>
+				<p>Strain analysis requires a model to be fitted to the wall.
+					The fitting process involves two stages</p>
+				<p>1. Specify endocardial apex and base-plane at end diastole
+					(ED) and end systole (ES) for at least one long axis view plane</p>
+				<p>2. Specify the location of right ventricular inserts in at
+					least one short axis view</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane"
+				title="Specification of long axis control points" open="false">
+				<h2>Specification of long axis control points</h2>
+				<p>An MRI study may contain more than one long axis
+					investigation. Select the one that passes through the middle of the
+					left ventricular (LV) chamber. This view can be determined using
+					the 3D rendering in the widget to the right.</p>
+				<p>
+					<img width="601" height="240"
+						src="./ABI/helpdocs/MRI2.png" />
+					Some MR recordings may cover more than one cardiac cycle. Select
+					the cardiac cycle of interest using the time slider and control 7.
+					To specify the end of cardiac cycle, move the time slider to the
+					desired frame and click on control 7. The beginning of the cardiac
+					cycle is determined by the end diastole frame.
+				</p>
+				<p>The end diastole frame is specified by the earliest time
+					frame at which endocardial landmarks are specified. When the end
+					diastole frame has been specified, the ED control, 5, is enabled.
+					The user can return to this frame to verify/modify the landmarks by
+					clicking on the control.</p>
+				<p>The baseplane landmarks at end systole frame are required.
+					The end systole frame occurs post the end diastole frame, using the
+					time slider move to the end systole frame and specify the base
+					plane land marks.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane"
+				title="Specification of Short axis RV Inserts" open="false">
+				<h2>Specification of Short axis RV Inserts</h2>
+				<p>Select a short axis imaging plane that passes close to the
+					base of the LV chamber and allows you to clearly view the locations
+					at which the right ventricular wall meets the LV chamber.</p>
+				<p>
+					<img width="263" height="309"
+						src="./ABI/helpdocs/MRI3.png" />
+				</p>
+				<p>Select these two points by clicking on the widget. No other
+					time specific information is required. Note that the video widget
+					does not know if the cine that it is rendering is a short axis on
+					or a long axis slice. Therefore, it provides the same controls for
+					both cines. The user can easily identify the axis and therefore is
+					expected to specify the control points appropriately. The fitting
+					process uses this meta information (number of points) to determine
+					which of the slices are along the short and long axis.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane" title="Model fitting"
+				open="false">
+				<p>Model fitting</p>
+				<p>To fit the model, specify the landmarks and provide a model
+					name. Click on &#8216;Fit Model&#8217; to initiate the process. A progress bar
+					is launched to indicate the fitting progress. Once a model is fit
+					to the data, the model is added to the &#8216;Models&#8216; views and a dialog
+					would notify this.</p>
+			</div>
+		</div>
+</body>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+   <!-- MySQL Datasource -->
+    <persistence-unit name="ICMADB">
+        <jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
+        <properties>
+            <property name="showSql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+        </properties>
+    </persistence-unit>
+</persistence>

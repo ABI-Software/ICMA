@@ -1,0 +1,15 @@
+This software is a part of ICMA 1.0, it is released under MPL 1.1/GPL 2.0/LGPL 2.1
+
+Requirements
+============
+ITK 4.2 or higher - (www.itk.org)
+libarchive - (www.libarchive.org/)
+libcurl - (curl.haxx.se/libcurl/)
+Boost C++ libraries - (www.boost.org/)
+
+Calls ffmpeg executable, the location is a passed as an argument  
+
+ 
+Code organization
+=================
+The graphs folder provides some information on module interactions in the form of image and a dot files (viewed using Graphviz compatible viewers) 

@@ -1,0 +1,277 @@
+<head>
+<link rel="stylesheet" href="ABI/app/ICMA/Main.css" type="text/css"
+	media="screen" title="no title" charset="utf-8">
+<script type="text/javascript" src="dojo/dojo.js"
+	data-dojo-config="async: 1, parseOnLoad: true"></script>
+<title>Patient Ultrasound Dashboard</title>
+</head>
+<body class="claro">
+	<div style="overflow: auto; height: 450px">
+		<div id="titleGroupUS" data-dojo-type="dojox.widget.TitleGroup">
+			<div data-dojo-type="dijit.TitlePane" open="true"
+				title="Patient Ultrasound Dashboard">
+				<h2>Patient Ultrasound Dashboard</h2>
+				<p>
+					The Cardiac-Ultrasound dashboard, "US Scans", collates all the
+					cardiac-ultrasound scans related to the selected patient. Note that
+					this list may not be the most upto date. <br> The scans are
+					listed from the oldest to the latest and presented as a
+					tab. Each study consists of observations along one or more ultrasound
+					diagnostic view axis. Each view is associated with some metadata
+					such as the times at which R-wave begins and ends, and the recorded
+					beats per minute for the cine recording and other metadata. By
+					default, the cine and metadata associated with the first view in the
+					&#8216;Views&#8217; portal is loaded when a study tab is selected.
+					The cine can be played or queried using the playable video widget
+					at the centre of the dashboard.
+				</p>
+
+				<p>Click on the title bars below, for help regarding key
+					controls and processes.</p>
+			</div>
+
+			<div data-dojo-type="dijit.TitlePane" title="Initial View Controls"
+				open="false">
+				<h2>View Controls</h2>
+				<p>
+					<img width="601" height="307" src="./ABI/helpdocs/USW.png" />
+				</p>
+
+				<p>1. The identification number of the patient within the
+					hospital information system (HIS)</p>
+				<p>2. The name of the patient/subject</p>
+				<p>3. The name of referring physician (accurate when ICMA is
+					integrated with the HIS)</p>
+				<p>4. List of ultrasound studies currently available for the
+					patient</p>
+				<p>5. The Date and time of the ultrasound study</p>
+				<p>6. Metadata regarding the beginning and ending R-wave based
+					on data stored in the ultrasound view recording</p>
+				<p>7. Switch to obtain time from video slider(if checked) or
+					from the textbox (the video slider is moved to match this value)</p>
+				<p>8. Buttons to set the R-wave values</p>
+				<p>9. Button to show metadata associated with the current view,
+					the data is shown in a popup dialog</p>
+				<p>V. Video widget to play cine associated with view and to seek
+					time points of interest</p>
+				<p>S. View organiser, lists all the views that are associated
+					with the study. The current view displayed in V is highlighted with
+					a light shadow. Another view can be loaded by clicking on its image
+					in the view organiser.</p>
+				<p>P. The number of pages within the view organiser. Views are
+					organised as five per page, when a study has more than five views,
+					additional pages are created. The number of such pages is indicated
+					by the number of dots. The arrows next to the dots allow for
+					traversing through these pages.</p>
+			</div>
+			<!-- Accordion item -->
+			<div data-dojo-type="dijit.TitlePane"
+				title="Model fitting and strain analysis" open="false">
+
+				<p>Strain analysis requires a model to be fitted to the wall
+					motion in the view(s) of interest. The fitting process involves
+					three stages</p>
+				<p>1. Select views for determining left ventricular geometry</p>
+				<p>2. Specify endocardial boundary and base-plane at end
+					diastole (ED) and end systole (ES) for long axis view planes</p>
+				<p>3. Verify tracked boundary and fit a model</p>
+			</div>
+			<!-- Accordion item -->
+			<div data-dojo-type="dijit.TitlePane" title="View Selection"
+				open="false">
+				<p>One of more views can be used to determine the left
+					ventricular (LV) chamber&#8217;s geometry. A maximum of six views
+					can be used and a minimum of one long axis view (Apical Long Axis
+					or Four chamber or Two chamber) is required.</p>
+				<p>
+					<img width="602" height="234" src="./ABI/helpdocs/USW1.png" />
+				</p>
+				<p>The orientation of a view-cine with respect to the LV
+					geometry is not apriori known and the user is required to assign
+					this. A view-cine along with its metadata i.e. the beginning and
+					ending R-wave interval, beats per minute and LV orientation are
+					required to start the fitting process.</p>
+			</div>
+			<!-- Accordion item -->
+			<div data-dojo-type="dijit.TitlePane"
+				title="Assigning LV orientation to view-cine" open="false">
+
+				<p>The view-cine&#8217;s LV orientation can be assigned to a
+					standard LV orientation by selecting the view in the &#8216;Views
+					Organiser&#8217;, this will load the view-cine in the video widget
+					and its metadata, and clicking the orientation icon in the fitting
+					control.</p>
+				<p>The view metadata can be modified before or after assigning
+					the orientation. One or more view-cine&#8217;s may be assigned a LV
+					orientation, however for a chamber model, only one of the
+					cine-views would be used for a LV orientation and this will be the
+					view-cine displayed on the fitting control.</p>
+				<p>If you wish to assign a different view-cine to a standard LV
+					orientation, clicking on the fitting control would flash an error
+					that &#8216;A view has been assigned to the imaging plane. Remove
+					the assigned view to continue&#8217;. The assigned view-cine can be
+					removed by clicking on the red-cross on the currently assigned
+					view-cine in that fitting control. Clicking again would assign the
+					chosen view-cine to that LV orientation.</p>
+			</div>
+			<!-- Accordion item -->
+			<div data-dojo-type="dijit.TitlePane"
+				title="Selection of endocardial boundary and base-planes"
+				open="false">
+				<p>Once the view-cine&#8217;s have been selected, click
+					&#8216;Fit model&#8217; button. This will open the boundary
+					specification window.</p>
+				<h4>Endocardial boundary specification controls</h4>
+				<p>
+					<img width="602" height="380" src="./ABI/helpdocs/USW2.png" />
+				</p>
+				<p>1. Time slider for long axis views. Use this to selected end
+					systole frame</p>
+				<p>2. Specify model name. Avoid special characters and numbers
+					at the beginning</p>
+				<p>3. Change the flip speed of the short axis view-cines</p>
+				<p>4. Button to start speckle tracking based on chosen boundary
+					information</p>
+				<p>5. Button to start speckle tracking based on chosen boundary
+					information, the speckle tracked motion is then used to fit a model
+				</p>
+				<p>6. Return back to the standard view with study data</p>
+				<p>The wizard will present boundary selection controls for each
+					of the views chosen. Therefore the wizard and controls will look
+					different from the example screenshot shown above. The long axis
+					boundary selection controls differ from the short axis ones.</p>
+
+				<h4>Long axis boundary selection</h4>
+				<p>
+					<img width="602" height="498" src="./ABI/helpdocs/USW3.png" />
+				</p>
+				<p>The long axis boundary selection process involves selection
+					of the LV base endpoints and apex. This is shown in the top-left
+					figure. The widget, by default, shows the frame at the beginning of
+					the R-wave. When these three landmarks are chosen, the widget
+					provides an approximate endocardial boundary with additional
+					control points to move the boundary to match the boundary on the
+					image. Note that order in which the points are selected is
+					immaterial, however, the first three points on the widget would
+					correspond to these control points and using their coordinates a
+					chamber boundary will be created. When placing points on the image,
+					the widget ensures that they are not too close. For instance, if
+					you have added a point and click close to it a new point will not
+					be added, rather the point closest to the clicked position is moved
+					to that point.</p>
+				<p>If you are not happy with the boundary, the reset option, 1,
+					allows you to reset all the landmarks in the widget and start it
+					afresh. You could also return back to the view and start the wizard
+					again. This will reset all landmark selections across all widgets!!
+				</p>
+				<p>At the beginging of the R-wave frame, the widget divides the
+					chamber into the standard three long axis sections (white lines) of
+					the 17 segment AHA strain analysis model. The user should aim to
+					align these lines to match expectations.</p>
+				<p>When there are two or more long axis views, the time sliders
+					of the widget to the right is synched with the widget on its
+					immediate left. Therefore, when the time slider is moved for the
+					leftmost long axis widget the others will follow, this is aimed to
+					help selecting the end systole frame consistently across the views
+					and it also is an indicator of the beat mismatch between the
+					view-cines.</p>
+				<p>Following the selection of end diastole markers, the base
+					plane at the end systole needs to be specified. To do this, move
+					the time slider to the frame that best describes the LV geometry at
+					end systole (indicated in the bottom left of the figure). Select
+					the base-plane end points by clicking on the widget. The widget
+					then displays a control, 2, which can be used to get to this frame
+					when the slider is moved. The apex can be specified in this frame,
+					but this is optional. When the apex is specified an approximate
+					boundary of the LV chamber based on these points is plotted.</p>
+				<p>Note that, three clicks correspond to the three landmarks. If
+					you would like to alter the base control points, select the apex
+					and then move the base points to the desired position.</p>
+				<p>If you miss to specify both the end diastole and end systole
+					landmarks, then that view will not be chosen for speckle tracking
+					and model fitting. If none of the long axis views have this
+					information an error message will be chosen to correct this,
+					however, if at least one of the long axis views has this
+					information, then no error will be shown.</p>
+				<h4>Short axis boundary selection</h4>
+				<p>
+					<img width="602" height="204" src="./ABI/helpdocs/USW4.png" />
+				</p>
+				<p>For short axis views, the widget flips the image to enable
+					easy boundary detection. Click on the image at the two furthest
+					endocardial boundary locations. The widget will then create a
+					circular boundary with additional control points to approximate the
+					endocardial boundary. Move the boundary points to best fit the
+					endocardial boundary in that frame.</p>
+			</div>
+			<!-- Accordion item -->
+			<div data-dojo-type="dijit.TitlePane"
+				title=" Verifying speckle tracking" open="false">
+
+				<p>The boundary tracked via speckle motion can be verified prior
+					to fitting a model to the boundary motion. This can be done by
+					clicking on the &#8216;Track Motion&#8217; button. On clicking the
+					button the selected views, metadata and landmark information is
+					passed to the speckle tracking service and a progress bar
+					indicating the progress of the tracking process is displayed. The
+					speed of tracking depends on the number of views submitted and the
+					server load. Once the tracking successfully completes, the
+					verification wizard is displayed with the boundary motion and
+					strain data.</p>
+				<p>
+					<img width="601" height="270" src="./ABI/helpdocs/USW5.png" />
+				</p>
+				<h4>Verification controls</h4>
+				<p>1. For long axis views, the tracked speckle locations are
+					displayed as circles. These circles can be moved to desired
+					position. The strain graph, 4, is automatically updated to reflect
+					to wall change. Note that the change in position is not propagated
+					along time and space. The user will have check and change across
+					each frame.</p>
+				<p>2. If you would like to reset the changes made to the current
+					frame. Click on &#8216;Rest to tracked results&#8217;</p>
+				<p>3. For short axis views, the circular boundary can be moved
+					to capture the endocardical boundary</p>
+				<p>4. The 17 segment strain values based on the current tracking
+					is displayed in the strain graph. Note that the number of strain
+					values depends on the number of long axis views that have been
+					submitted to speckle tracking</p>
+				<p>5. The strains that have been selected to compute the average
+					wall motion strain and the peak global longitudinal strain (PGLS)
+					are listed. If a strain is included in the calculation the checkbox
+					next to the strain number is checked. Unselecting an existing
+					strain will remove the strain from the strain graph and the average
+					strain and PGLS are recomputed.</p>
+				<p>6. The PGLS value for the selected strains in control 5</p>
+				<p>7. The views that have been tracked for motion. The user can
+					select/deselect each available view to see the strains contributed
+					by that view. Note that no short axis strains are plotted and their
+					selection/deselection does not have an effect on controls 4 and 5.
+					However, this control also serves the purpose of choosing which
+					views and their wall motion should be used to fit the LV geometry
+					model. Thus a number of models can be generated by combining the
+					available view data. Each model would require a unique name and
+					this can be specified using control 8.</p>
+				<p>8. Name/identifier for the LV geometry model that would be
+					fit using the selected views in control 7.</p>
+				<p>9. The common play/pause and seek time slider for all the
+					speckle tracking result views.</p>
+				<p>To fit a model, click on &#8216;Fit to Tracking&#8217;, this
+					will submit the fit request and display a progress bar to indicate
+					the progress. Once a model is fit to the data, the model is added
+					to the &#8216;Models&#8217; views and a dialog would notify this.
+					You can return to this page by closing the dialog and existing
+					tracking data is not lost and you may create models or modify the
+					tracking output. You can also switch to the models tab and view the
+					fitting results. The data in the verification pane for that study
+					will not be lost.</p>
+				<p>You can return to the study view, by clicking &#8216;Return
+					to View&#8217; control. This will clear any speckle tracking
+					results associated with the study.</p>
+				<p>You can return to the tracking menu, where you choose the
+					initial landmarks, by clicking &#8216;Return to Tracking&#8217;
+					control. This will clear any speckle tracking results.</p>
+			</div>
+		</div>
+	</div>
+</body>

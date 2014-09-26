@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="ABI/app/ICMA/Main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<title>ICMA Cardiac-Ultrasound dashboard</title>
+</head>
+<body class="claro">
+<h1>Introduction</h1>
+The Cardiac-Ultrasound dashboard, "US Scans", collates all the cardiac-ultrasound scans related to the selected patient. 
+Note that this list may not be the most upto date. <br>
+The scans are listed from the oldest to the latest. Within each scan, the output of various diagnostic views are available and are listed
+at the bottom of the window. The widget, titled "Views", shows snapshots of the views that are available, there may be more that the number of views being shown
+these may be accessed by clicking on the left and right arrows on the top-right corner of the widget. Note that the number of dots on the top right corner indicate
+the number of pages into which the view snapshots have been organized. <br>
+Click on the snapshot to view the associated cine. The cine is loaded in the center of the page, with additional details on the left hand side.
+"Show properties" displays some notes associated with that view.
+<h2>Creating a computer model</h2>      
+In order to create a computer model, the following information is required by the modeling component. At the dashboard view the following information is collected.
+<ul>
+<li>The views that will be used to determine the left ventricular(LV) geometry. At least one long axis view needs to provided.</li>
+<li>The view's axis-description for each selected view, this could be one of APLAX,4 Chamber, 2 Chamber and short axis views.</li>
+<li>The time at which the R-wave of interest begins (note a cine may have multiple R-waves).</li>
+<li>The time at which the R-wave of interest ends (note a cine may have multiple R-waves).</li>
+</ul>
+Views of interest can be selected by clicking on the snapshot in the "Views" widget, and then clicking on the pictorial table on the right. Note only one snapshot
+can be associated with a view-axis, to assign a another view, remove the currently assigned view by clicking on 'X' on the top-right corner and then assign the new view.
+For each selected snapshots, set the beginning R-wave and ending R-wave information. This step can be done pre or post selection.
+The R-wave times can be selected by moving the slider below the cine display. Alternatively, the user can specify these values in the text box. Ensure that the "Set values from video"
+checkbox is appropriately selected.<br>
+Click on "Fit Model" button to initiate the fitting process. This action will open the "Boundary setup" widget. 
+<h2>Setting up Left ventricular boundary</h2>  
+For long axis views, the apex, base plane positions at the beginning of the R-wave and at end-systole are required. For short axis views no-such information is required.
+The "Boundary setup" widget will show the long-axis views followed by short-axis views. Each long-axis view will be set to the scan snapshot at the beginning of the R-wave.
+<h3>Long axis view setup</h3>
+For each long-axis view, select the "Apex" position and click on the cine window, this will create a grey circle to indicate the position. Proceed to select the 
+positions at which left and right base of the left ventricle terminate.  There is no specific order in which these landmarks need to be selected. However, until you have selected
+all three landmarks, do not try to correct them, as the first three clicks will correspond to three key landmarks. Once these landmarks have been placed, additional landmarks to
+trace the boundary will be created. Each of the landmarks can be moved individually. Ensure that these landmarks are on the endocardial boundary and the division of the LV chamber
+by the green horizontal lines match your expectation of the standard AHA LV chamber segmentation.<br>
+Move the time slider to the time point at which you expect systole. Click on locations where the left and right base of the left ventricle terminate. You can select the location of the "Apex", a rough spline 
+ marking the LV chamber geometry is rendered. On selection of the base landmarks at systole, a button appears in the cine window to help jump to the systole frame.
+<h3>Short axis view setup</h3>  
+For each short axis view, click on the image to choose the two farthest points within the endocardial boundary. Once the two landmarks are placed, a circular region covering the LV chamber is rendered with
+additional landmarks, move these landmarks to appropriately trace the LV chamber boundary.
+<h3>Generating model</h3>
+Provide a name for the model to be generated (this can be changed in the following step). 
+</body>
+</html>

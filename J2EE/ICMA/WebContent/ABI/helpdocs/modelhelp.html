@@ -1,0 +1,157 @@
+<head>
+<link rel="stylesheet" href="ABI/app/ICMA/Main.css" type="text/css"
+	media="screen" title="no title" charset="utf-8">
+<script type="text/javascript" src="dojo/dojo.js"
+	data-dojo-config="async: 1, parseOnLoad: true"></script>
+<title>Model Dashboard</title>
+</head>
+<body class="claro">
+	<div style="height: 400px; overflow: auto">
+		<div id="titleGroupModel" data-dojo-type="dojox.widget.TitleGroup">
+			<div data-dojo-type="dijit.TitlePane" open="true"
+				title=" Model Dashboard">
+
+				<h2>Model Dashboard</h2>
+
+				<p>The Model dashboard provides integrated access to all the
+					patient&#8217;s models. The model tabs are arranged in chronologically
+					ascending order. Based on the source of the model i.e. ultrasound
+					speckle tracking or MRI, the information presented in the model
+					analysis perspective varies.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane"
+				title="The Ultrasound model view" open="false"
+				style="overflow: auto">
+				<h2>The Ultrasound model view</h2>
+				<p>
+					<img width="601" height="306" src="./ABI/helpdocs/Model.png" />
+				</p>
+				<h2>Model Controls</h2>
+				<p>1. List of models currently available for the patient</p>
+				<p>2. Model creation date</p>
+				<p>3. Author of the model</p>
+				<p>4. Validation status</p>
+				<p>5. Peak Global Longitudinal strain computed for the model
+					based on selected strains</p>
+				<p>6. Peak Global Longitudinal strain computed from speckle data
+					based on selected strains</p>
+				<p>7. Ejection fraction based on models chamber volume</p>
+				<p>8. Control to save metadata changes</p>
+				<p>9. Control to open the study based on which the model was
+					created</p>
+				<p>A. Analysis perspective integrates model strain data</p>
+				<p>W. Worksheet perspective integrates model notes</p>
+				<p>P. Projection of LV model on selected diagnostic view planes</p>
+				<p>M. LV model with diagnostic views</p>
+				<p>S. Controls to select the diagnostic views and model elements
+					displayed in M</p>
+				<p style="padding-left:5em">a. APLAX, 4CH, 2CH, SAX control the display of diagnostic
+					views</p>
+				<p style="padding-left:5em">b. Surface shows/hides the endocardium surface of the model
+					mesh</p>
+				<p style="padding-left:5em">c. Lines shows/hides the endocardial mesh element boundaries</p>
+				<p style="padding-left:5em">d. Fibres shows/hides the myocardial fibre architecture based
+					on normal human DTI data</p>
+				<p>G. Collection of graphs based on model wall motion and
+					geometry</p>
+				<p style="padding-left:5em">a. The graphs are subdivided into groups based on the
+					physical quantity they measure</p>
+				<p style="padding-left:5em">b. Speckle (2D) describes the speckle based strain</p>
+				<p style="padding-left:5em">c. Speckle (3D) describes the speckle based strain based on
+					landmark data that has been rotated to the standard geometric
+					position of the diagnostic view with respect to the LV chamber
+					geometry</p>
+				<p style="padding-left:5em">d. Linear (3D) describes the strain based on model wall
+					motion</p>
+				<p>H. Control to select/deselect the strain in the plot, G. Note
+					that the strains and the controls are color coded. Only strain
+					graphs are affected by these controls. The &#8216;Clear&#8217; control clears
+					the plot, it switches to &#8216;Select All&#8217; control which ensures all
+					selected strains are plotted</p>
+				<p>O. Control to set the time point at which mitral value opens.
+					An indicator to mark this time point is plotted on the graphs. You
+					must save the selection using, 8, to retrieve this information in
+					the subsequent renderings of the model.</p>
+				<p>P. Control to set the time point at which mitral value
+					closes. An indicator to mark this time point is plotted on the
+					graphs. You must save the selection using, 8, to retrieve this
+					information in the subsequent renderings of the model.</p>
+				<p>T. For model based measures, the model wall motion/geometry
+					can be determined across the myocardial wall. The measure along the
+					wall can be probed using this slider.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane" title="The MRI model view"
+				open="false" style="overflow: auto">
+				<h2>The MRI model view</h2>
+				<p>
+					<img width="601" height="306" src="./ABI/helpdocs/Model1.png" />
+				</p>
+				<h2>Model Controls</h2>
+				<p>1. List of models currently available for the patient</p>
+				<p>2. Model creation date</p>
+				<p>3. Author of the model</p>
+				<p>4. Validation status</p>
+				<p>5. Peak Global Longitudinal strain computed for the model
+					based on selected strains</p>
+				<p>6. Peak Global Longitudinal strain computed from speckle data
+					based on selected strains</p>
+				<p>7. Ejection fraction based on models chamber volume</p>
+				<p>8. Control to save metadata changes</p>
+				<p>9. Control to open the study based on which the model was
+					created</p>
+				<p>A. Analysis perspective integrates model strain data</p>
+				<p>W. Worksheet perspective integrates model notes</p>
+				<p>M. LV model with diagnostic slices</p>
+				<p style="padding-left:5em">a. The displayed short and long axis slices can be selected
+					using controls &#8216;Short&#8217; and &#8216;Long&#8217;. Each control provides a dropdown
+					list of slices that can be displayed. To display a slice, the
+					corresponding checkbox should be checked.</p>
+				<p>S. Controls to select the model elements displayed in M</p>
+				<p style="padding-left:5em">a. Surface shows/hides the endocardium surface of the model
+					mesh</p>
+				<p style="padding-left:5em">b. Lines shows/hides the endocardial mesh element boundaries</p>
+				<p style="padding-left:5em">c. Fibres shows/hides the myocardial fibre architecture based
+					on normal human DTI data</p>
+				<p>G. Collection of graphs based on model wall motion and
+					geometry</p>
+				<p style="padding-left:5em">a. The graphs are subdivided into groups based on the
+					physical quantity they measure</p>
+				<p style="padding-left:5em">b. Linear (3D) describes the strain based on model wall
+					motion</p>
+				<p>H. Control to select/deselect the strain in the plot, G. Note
+					that the strains and the controls are color coded. Only strain
+					graphs are affected by these controls. The &#8216;Clear&#8217; control clears
+					the plot, it switches to &#8216;Select All&#8217; control which ensures all
+					selected strains are plotted</p>
+				<p>O. Control to set the time point at which mitral value opens.
+					An indicator to mark this time point is plotted on the graphs. You
+					must save the selection using, 8, to retrieve this information in
+					the subsequent renderings of the model.</p>
+				<p>C. Control to set the time point at which mitral value
+					closes. An indicator to mark this time point is plotted on the
+					graphs. You must save the selection using, 8, to retrieve this
+					information in the subsequent renderings of the model.</p>
+				<p>T. For model based measures, the model wall motion/geometry
+					can be determined across the myocardial wall. The measure along the
+					wall can be probed using this slider.</p>
+			</div>
+			<div data-dojo-type="dijit.TitlePane"
+				title="Model Worksheet perspective" open="false"
+				style="overflow: auto">
+				<h2>Model Worksheet perspective</h2>
+				<p>The model worksheet perspective allows the users to enter
+					data and notes that may be useful in downstream analysis of the
+					model. Data could be entered in the free form in control N. The
+					study type can be assigned using control M. Free from tags to
+					classify models with a center can be specified using the control S.
+					The gravitational condition under which the study was performed can
+					be specified using the control G.</p>
+				<p>Whenever data is added or modified, the changes must be saved
+					using control 8.</p>
+				<p>
+					<img width="601" height="306" src="./ABI/helpdocs/Model2.png" />
+				</p>
+			</div>
+		</div>
+	</div>
+</body>

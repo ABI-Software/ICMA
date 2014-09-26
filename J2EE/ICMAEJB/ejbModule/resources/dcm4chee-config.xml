@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <server>
+        <aetitle>DCM4CHEE</aetitle>
+        <hostname>130.216.208.61</hostname>
+        <port>11112</port>
+        <wadoport>8080</wadoport>
+        <dcmprotocol>DICOM</dcmprotocol>
+    </server>
+</configuration>

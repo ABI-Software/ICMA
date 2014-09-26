@@ -1,0 +1,32 @@
+digraph "" {
+  graph [packmode="clust", ranksep="1.0", bgcolor="#F7F5F3", pack="true", fontname="Arial", fontsize="10", style="rounded,filled", compound="true", rankdir="LR", label="", fillcolor="#FFFFCC"];
+  node [shape="rectangle", node_initialized="no", style="filled", fontname="Arial", fontsize="10", fixedsize="false", compound="true", color="grey", height="0.0", width="0.0", label="", fillcolor="white"];
+  edge [arrowhead="normal", fontcolor="black", arrowsize="0.5", ltail="", dir="forward", fontname="Arial", fontsize="10", lhead="", color="black", compound="true", label="", arrowtail="none"];
+  subgraph "cluster_1" {
+    graph [label="src", fillcolor="#FFFFCC"];
+    __N2 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="0.347222", label=""];
+    __N3 [shape="box3d", style="filled", label="tinyxml2.cpp"];
+    __N4 [shape="box3d", style="filled", label="tinyxml2.h"];
+    __N5 [shape="box3d", style="filled", label="Vector3D.h"];
+    __N6 [shape="box3d", style="filled", label="Coordinate3D.h"];
+    __N7 [shape="box3d", style="filled", label="LVChamberCircle.cpp"];
+    __N8 [shape="box3d", style="filled", label="LVChamberCircle.h"];
+    __N9 [shape="box3d", style="filled", label="StrainMeasures.cpp"];
+    __N10 [shape="box3d", style="filled", label="StrainMeasures.h"];
+    __N11 [shape="box3d", style="filled", label="LVChamberRadius.cpp"];
+    __N12 [shape="box3d", style="filled", label="LVChamberRadius.h"];
+    __N13 [shape="box3d", style="filled", label="Point3D.h"];
+    __N14 [shape="box3d", style="filled", label="LevelSet.h"];
+    __N15 [shape="box3d", style="filled", label="LVMyocardialVolume.cpp"];
+    __N16 [shape="box3d", style="filled", label="humandtifibre.h"];
+    __N17 [shape="box3d", style="filled", label="LVMyocardialVolume.h"];
+    __N18 [shape="box3d", style="filled", label="WallSegment.h"];
+    __N19 [shape="box3d", style="filled", label="main.cxx"];
+    __N3 -> __N4 [dir="forward", color="blue3", label="124"];
+    __N5 -> __N6 [dir="forward", color="blue3", label="6"];
+    __N7 -> __N8 [dir="forward", color="blue3", label="3"];
+    __N9 -> __N10 [dir="forward", color="blue3", label="26"];
+    __N11 -> __N12 [dir="forward", color="blue3", label="6"];
+    __N13 -> __N6 [dir="forward", color="blue3", label="6"];
+  }
+}

@@ -1,0 +1,49 @@
+digraph "" {
+  graph [packmode="clust", ranksep="1.0", bgcolor="#F7F5F3", pack="true", fontname="Arial", fontsize="10", style="rounded,filled", compound="true", rankdir="LR", label="", fillcolor="#FFFFCC"];
+  node [shape="rectangle", node_initialized="no", style="filled", fontname="Arial", fontsize="10", fixedsize="false", compound="true", color="grey", height="0.0", width="0.0", label="", fillcolor="white"];
+  edge [arrowhead="normal", fontcolor="black", arrowsize="0.5", ltail="", dir="forward", fontname="Arial", fontsize="10", lhead="", color="black", compound="true", label="", arrowtail="none"];
+  subgraph "cluster_1" {
+    graph [label="src", fillcolor="#FFFFCC"];
+    __N2 [shape="none", style="invis,none", fixedsize="true", height="0.01", width="0.347222", label=""];
+    __N3 [shape="box3d", style="filled", label="DICOMInputManager.cpp"];
+    __N4 [shape="box3d", style="filled", label="DICOMInputManager.h"];
+    __N5 [shape="box3d", style="filled", label="DICOMProperties.cpp"];
+    __N6 [shape="box3d", style="filled", label="DICOMProperties.h"];
+    __N7 [shape="box3d", style="filled", label="DCMTKUtils.h"];
+    __N8 [shape="box3d", style="filled", label="tinyxml2.h"];
+    __N9 [shape="box3d", style="filled", label="tinyxml2.cpp"];
+    __N10 [shape="box3d", style="filled", label="URLFileDownloader.cpp"];
+    __N11 [shape="box3d", style="filled", label="URLFileDownloader.h"];
+    __N12 [shape="box3d", style="filled", label="SegmentationAndFittingException.h"];
+    __N13 [shape="box3d", style="filled", label="Vector3D.h"];
+    __N14 [shape="box3d", style="filled", label="Coordinate3D.h"];
+    __N15 [shape="box3d", style="filled", label="XMLInputReader.cpp"];
+    __N16 [shape="box3d", style="filled", label="XMLInputReader.h"];
+    __N17 [shape="box3d", style="filled", label="Point3D.h"];
+    __N18 [shape="box3d", style="filled", label="SegmentationAndFittingException.cpp"];
+    __N19 [shape="box3d", style="filled", label="DICOMImage.cpp"];
+    __N20 [shape="box3d", style="filled", label="DICOMImage.h"];
+    __N21 [shape="box3d", style="filled", label="MovieMaker.h"];
+    __N22 [shape="box3d", style="filled", label="MovieMaker.cpp"];
+    __N23 [shape="box3d", style="filled", label="DCMTKUtils.cpp"];
+    __N24 [shape="box3d", style="filled", label="main.cxx"];
+    __N3 -> __N4 [dir="forward", color="blue3", label="138"];
+    __N3 -> __N5 [dir="forward", color="blue3", label="3"];
+    __N6 -> __N7 [dir="forward", color="blue3", label="1"];
+    __N6 -> __N8 [dir="forward", color="blue3", label="1"];
+    __N9 -> __N8 [dir="forward", color="blue3", label="263"];
+    __N10 -> __N11 [dir="forward", color="blue3", label="12"];
+    __N10 -> __N12 [dir="forward", color="blue3", label="1"];
+    __N13 -> __N14 [dir="forward", color="blue3", label="73"];
+    __N15 -> __N16 [dir="forward", color="blue3", label="6"];
+    __N4 -> __N7 [dir="forward", color="blue3", label="2"];
+    __N17 -> __N14 [dir="forward", color="blue3", label="73"];
+    __N18 -> __N12 [dir="forward", color="blue3", label="1"];
+    __N5 -> __N6 [dir="forward", color="blue3", label="7"];
+    __N19 -> __N20 [dir="forward", color="blue3", label="16"];
+    __N21 -> __N7 [dir="forward", color="blue3", label="1"];
+    __N22 -> __N20 [dir="forward", color="blue3", label="2"];
+    __N22 -> __N12 [dir="forward", color="blue3", label="1"];
+    __N22 -> __N21 [dir="forward", color="blue3", label="65"];
+  }
+}

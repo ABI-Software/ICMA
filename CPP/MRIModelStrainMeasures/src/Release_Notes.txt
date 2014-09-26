@@ -1,0 +1,21 @@
+This software is a part of ICMA 1.0, it is released under MPL 1.1/GPL 2.0/LGPL 2.1
+
+Requirements
+============
+cmgui v2.9.0 - (http://sourceforge.net/projects/cmiss/files/cmgui/cmgui-wx-2.9.0/)
+Boost C++ libraries - (www.boost.org/)
+libcurl - (curl.haxx.se/libcurl/)
+
+Builds
+======
+ITK build
+cmgui library build *with* itk 
+
+cmake
+=====
+The Cmgui_DIR can be set in the cmake file or using cmake-gui, ensure that you point to the cmake definitions of the cmgui library build without itk
+ 
+ 
+Code organization
+=================
+The graphs folder provides some information on module interactions in the form of image and a dot files (viewed using Graphviz compatible viewers) 

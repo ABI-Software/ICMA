@@ -1,0 +1,13 @@
+<ICMA>
+	<OUTPUTDIRECTORY >
+		.
+	</OUTPUTDIRECTORY>
+	<FILE>
+		<NAME>
+		movie	
+		</NAME>
+		<URI>
+			dicom.dcm 
+		</URI>
+	</FILE>
+</ICMA>

@@ -1,0 +1,16 @@
+{
+	"name": "ABI",
+	"version":"1.0.0",
+	"directories": {
+		"lib": "."
+		"app": "."
+	},
+	"main": "main",
+	"description": "ABI.",
+	"licenses": [
+	],
+	"bugs": "",
+	"keywords": [],
+	"homepage": "",
+	"dojoBuild": "ABI.profile.js"
+}
