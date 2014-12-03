@@ -67,16 +67,15 @@ void DICOMInputManager::Initialize() {
 			{
 				uriFile.setProxy(proxy);
 			}
-			std::ostringstream ss;
-			for (int i = 4; i < inputFile.length(); i++)
-			{
-				if (isalnum(inputFile[i]))
-				{
-					ss << inputFile[i];
-				}
+			//Create a short random file name
+			std::ostringstream fnx;
+			fnx << "Wado" << rand() << ".dcm";
+			while (boost::filesystem::exists(boost::filesystem::path(fnx.str()))) {
+				fnx.str("");
+				fnx << "Wado" << rand() << ".dcm";
 			}
-			std::string fn(ss.str().substr(0, 250) + ".dcm");
-
+			std::string fn(fnx.str());
+			
 			if (uriFile.loadURLToFile(inputFile, fn) != 0)
 			{
 				SAFTHROW("Unable to load URL " + inputFile)
