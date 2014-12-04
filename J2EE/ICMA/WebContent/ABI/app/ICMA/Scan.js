@@ -1444,7 +1444,7 @@ define([
 		},
 		
 		isViewValid: function(){
-			return ((this.view.beginningRwave != "NA") && (this.view.followingRwave != "NA") && (this.view.beatsPerMin != "NA")) ? true : false;
+			return ((this.view.beginningRwave != "NA") && (this.view.followingRwave != "NA") && (this.view.beatsPerMin != undefined ) && (this.view.beatsPerMin != "NA")) ? true : false;
 		},
 		
 		alertViewInvalidShow: function(){
