@@ -104,4 +104,10 @@ public class PatientSourceMapManager implements PatientSourceMapManagerRemote {
 		entityManager.remove(merged);
 	}
 	
+	public void purgeMap(){
+		String q = "DELETE FROM PatientSource";
+		entityManager.createQuery(q).executeUpdate();
+		entityManager.flush();
+	}
+	
 }
