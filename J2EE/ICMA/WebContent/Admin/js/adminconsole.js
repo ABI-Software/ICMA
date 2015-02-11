@@ -254,7 +254,7 @@ var oCache = {
 	           success: function(data, textStatus, jqXHR ){
 	        	   $( "#busyDialog" ).dialog( "close" );
 	        	   var dialogDiv = $(document.createElement('div'));
-	        	   if(action=="sync")
+	        	   if(action=="sync"||action=="resync")
 	        		   dialogDiv.html('Successfully submitted the request to the server<BR> Refresh table to follow record status changes');
 	        	   else
 	        		   dialogDiv.html('Successfully removed patient from ICMA records <BR> Refresh table to follow record status changes');
@@ -388,6 +388,9 @@ var oCache = {
 		                             if(location=="PACS Only"){
 		                            	 bLabel = "Sync with ICMA";
 		                            	 action = 'sync';
+		                             } else if(location=="In Sync"){
+		                            	 bLabel = "Resync with PACS";
+		                            	 action = 'resync';		                            	 
 		                             } 
 		                             if(location!="operating"){
 		                            	 if(bLabel != "Remove from ICMA"){
