@@ -87,9 +87,11 @@ public class ICMADatabaseSynchronizer {
 	private EntityManager entityManager;
 
 	@Resource
-    private SessionContext ctx;
+    	private SessionContext ctx;
 	
 	private boolean initializingICMA = true;
+	
+	private boolean synchronizingWithPACS = false;
 
 	@EJB
 	private ICMADatabaseAdministration admin;
@@ -124,7 +126,7 @@ public class ICMADatabaseSynchronizer {
 		// Ensure patient id's are consistent
 		if(initializingICMA){
 			try {
-				updatePatientSourceMap(-1);
+				//updatePatientSourceMap(-1);
 				//purge any dangling fem model records i.e status= create
 				//String q = "SELECT fem_model_pk FROM FEMModelModification p WHERE p.Action = "+FEMModelModification.submit;
 				String q = "SELECT distinct m.sopid FROM FEMModelModification p, FEMModel m WHERE m.pk=p.fem_model_pk AND m.model_status = 'SUBMITTED' AND p.Action = "+FEMModelModification.create;
@@ -151,12 +153,13 @@ public class ICMADatabaseSynchronizer {
 	// As PreDestroy may not be invoked
 	// The following method will be invoked every five minutes in a hour
 	@AccessTimeout(-1)
-	//@Schedule(minute = "*/5", hour = "*", persistent = false)
+	@Schedule(minute = "*/5", hour = "*", persistent = false)
 	//@Schedule(hour = "*/12", persistent = false)
 	public void synchronizeWithPACS() {
 		int lookBack = 5;
 		// Deleted studies (in PACS) are removed, while new studies are added
-		if (!initializingICMA) {
+		if (!initializingICMA&&!synchronizingWithPACS) {
+			synchronizingWithPACS = true;
 			log.log(Level.INFO,"Synchronization with PACS called");
 			List<Patient> activePatients = patientsBean.getActivePatients();
 			if(activePatients!=null){
@@ -168,6 +171,7 @@ public class ICMADatabaseSynchronizer {
 					}
 				}
 			}
+			synchronizingWithPACS = false;
 		}
 	}
 	
@@ -206,6 +210,8 @@ public class ICMADatabaseSynchronizer {
 	@Asynchronous
 	private void updatePatientSourceMap(int lookBack){
 		String[] status = {"In Sync","PACS Only","ICMA Only"};
+		//Delete the existing map and create afresh
+		mapManager.purgeMap();
 		Hashtable<String, PatientSource> pacstable = new Hashtable<String, PatientSource>();
 		try{
 			Vector<PatientRecord> pacsPatients = DCMAccessManager.getPatients(lookBack);
@@ -231,7 +237,9 @@ public class ICMADatabaseSynchronizer {
 			Enumeration<PatientSource> pats = pacstable.elements();
 			while(pats.hasMoreElements()){
 				PatientSource src = pats.nextElement();
-				if(mapManager.findMap(src)==null){
+				entityManager.persist(src);
+				entityManager.flush();
+				/*if(mapManager.findMap(src)==null){
 					try{
 						entityManager.persist(src);
 					}catch(Exception exx){
@@ -241,7 +249,7 @@ public class ICMADatabaseSynchronizer {
 					PatientSource srx = mapManager.findMap(src);
 					srx.setStatus(src.getStatus());
 					mapManager.updateMap(srx);
-				}
+				}*/
 			}
 		}catch(Exception exx){
 			
