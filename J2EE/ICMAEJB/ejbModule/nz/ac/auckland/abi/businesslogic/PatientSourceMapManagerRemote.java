@@ -50,4 +50,5 @@ public interface PatientSourceMapManagerRemote {
 	public void deleteMap(PatientSource map) throws Exception;
 	public List<PatientSource> getAllPatients(String filter) throws Exception;
 	public int getMapCount() throws Exception;
+	public void purgeMap();
 }
