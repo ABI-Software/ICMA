@@ -1196,10 +1196,7 @@ public class DCMAccessManager {
 		DCMConfigProperties properties = new DCMConfigProperties(StorageService.class.getResource("/resources/DCMAccessManager.cfg"));
 
 		if (lookBack > 0) {
-			Calendar cal = new GregorianCalendar();
-			cal.add(Calendar.MINUTE, lookBack);
-			Date currentTime = cal.getTime();
-			properties.put("key.StudyDate", currentTime.toString());
+			properties.put("key.StudyDate", ""+lookBack);
 		}
 
 		DcmURL url = new DcmURL(new ApplicationEntity().toString());
@@ -1289,10 +1286,7 @@ public class DCMAccessManager {
 
 		properties.put("key.PatientID", patientID);
 		if (lookBack > 0) {
-			Calendar cal = new GregorianCalendar();
-			cal.add(Calendar.MINUTE, lookBack);
-			Date currentTime = cal.getTime();
-			properties.put("key.StudyDate", currentTime.toString());
+			properties.put("key.StudyDate", ""+lookBack);
 		}
 
 		DcmURL url = new DcmURL(new ApplicationEntity().toString());
@@ -1340,10 +1334,7 @@ public class DCMAccessManager {
 		properties.put("key.StudyInstanceUID", studyID);
 
 		if (lookBack > 0) {
-			Calendar cal = new GregorianCalendar();
-			cal.add(Calendar.MINUTE, lookBack);
-			Date currentTime = cal.getTime();
-			properties.put("key.StudyDate", currentTime.toString());
+			properties.put("key.StudyDate", ""+lookBack);
 		}
 
 		DcmURL url = new DcmURL(new ApplicationEntity().toString());
