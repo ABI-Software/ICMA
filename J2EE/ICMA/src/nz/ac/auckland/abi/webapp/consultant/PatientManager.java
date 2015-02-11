@@ -95,6 +95,10 @@ public class PatientManager {
 					response.put("msg", "success");
 				else
 					response.put("msg", "failed");
+			}else if(req.action.equalsIgnoreCase("resync")){
+				//add the patient
+				admin.refreshPatientFromPACS(req.getPatientid());
+				response.put("msg", "success");
 			}
 		}catch(Exception exx){
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(exx.toString()).build();
