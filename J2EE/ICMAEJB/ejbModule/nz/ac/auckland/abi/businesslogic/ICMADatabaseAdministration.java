@@ -171,43 +171,7 @@ public class ICMADatabaseAdministration implements ICMADatabaseAdministrationRem
 					log.log(Level.INFO, "Exception occured while purging patient " + patId + " ICMA may not be in sync with the PACS");
 				}
 			}
-		} else {
-
-			// resourceManger.dropCMS();
-			// addPatientFromPACS("55437475");
-			// addPatientFromPACS("12885539");
-			// removePatient("12885539");
-			// addPatientFromPACS("50184730");
-			/*
-			 * Vector<PatientRecord> pacsPatients = DCMAccessManager
-			 * .getPatients(lookBack); // Add in the new Patients -
-			 * synchronously String skip[] =
-			 * {"10/06/24:131043","26644232","008","007","10/08/18:083732",
-			 * "54545290", "41295775", "10/07/12:145429", "10/07/20:124502",
-			 * "52591546", "55023646", "55036063", "40726152", "17593650",
-			 * "55144877", "10/06/30:102545", "20595809", "NASA1029004",
-			 * "NASA1029004", "10/08/02:151615", "31188601", "10/07/20:144153",
-			 * "55347239", "NASA005", "35784705", "10/08/26:074610",
-			 * "10/06/30:150117" };
-			 * 
-			 * for (int ctr=0;ctr<pacsPatients.size();ctr++) { if(ctr>10){
-			 * break; } PatientRecord pat = pacsPatients.elementAt(ctr); String
-			 * pid = pat.getPatientID(); boolean skipRec = false; for(String
-			 * skipr : skip){ if(skipr.equalsIgnoreCase(pid)){ skipRec = true; }
-			 * } if(skipRec) continue;
-			 * 
-			 * try { Patient myPatient =
-			 * patientsBean.getPatientByID(pat.getPatientID()); if (myPatient ==
-			 * null) { if (pat != null) { batchAdd(pat,false); } } else {
-			 * System.out.println("Skipping Patient with ID " +
-			 * pat.getPatientID() + " record already exists"); } } catch
-			 * (Exception exx) { System.out
-			 * .println("Exception occured while adding patient " +
-			 * pat.getPatientID() + " ICMA may not be in sync with the PACS");
-			 * System.out.println("Stopping the process"); break; } }
-			 */
-			log.log(Level.INFO, "Added patient records");
-		}
+		} 
 
 	}
 
@@ -283,47 +247,6 @@ public class ICMADatabaseAdministration implements ICMADatabaseAdministrationRem
 		}
 	}
 
-	/*	@Asynchronous
-	 	public void synchronizeStudyInstances(String patientID, String studyID, int lookBack) throws Exception {
-
-		if (rInit.canStartTask()) {
-			Vector<InstanceRecord> instances = DCMAccessManager.getStudyInstances(studyID, lookBack);
-
-			// Check if the study and fem instances exist
-			PACSStudy study = studiesBean.getStudy(studyID);
-			List<USStudyInstances> dbinst = instanceBean.getInstancesForStudy(study);
-			List<FEMModel> dbmodels = femmodelsBean.getStudyModels(study);
-			for (USStudyInstances dbi : dbinst) {
-				for (InstanceRecord pinst : instances) {
-					if (dbi.getInstanceID() == pinst.getSopIuid()) {
-						instances.remove(pinst);
-						break;
-					}
-				}
-			}
-
-			for (FEMModel dbi : dbmodels) {
-				for (InstanceRecord pinst : instances) {
-					if (dbi.getId() == pinst.getSopIuid()) {
-						instances.remove(pinst);
-						break;
-					}
-				}
-			}
-
-			PACSInstanceprocessor processInstances = new PACSInstanceprocessor(this.getClass().getSimpleName(), resourceManger, patientID, studyID, instances);
-
-			Vector<USStudyInstances> dinst = processInstances.getPACSInstances();
-			Vector<FEMModel> feminst = processInstances.getFEMModels();
-
-			// Atomic add to DB
-			// batchAdd(null, null, dinst, feminst);
-			patientRecord.batchAdd(null, null, dinst, feminst);
-			processInstances.cleanup();
-			rInit.taskCompleted();
-		}
-	}*/
-
 	public boolean removePatient(String patientID) throws Exception {
 		if (!rInit.getBatchProcessSubmissions().containsKey(patientID))
 			return patientRecord.removePatient(patientID);
@@ -331,80 +254,7 @@ public class ICMADatabaseAdministration implements ICMADatabaseAdministrationRem
 			throw new Exception("Data related to " + patientID + " is under process. Cannot remove record.");
 	}
 
-/*	@Asynchronous
-	public void batchAdd(PatientRecord pat, boolean refresh) throws Exception {
-		final int lookBack = -1;
-		boolean createdAllRecords = true;
 
-		while (rInit.canStartTask()) {
-			try {
-				Thread.sleep(10000);
-			} catch (Exception exx) {
-
-			}
-			log.log(Level.FINE, "Batch add waiting for tasks to complete");
-		}
-
-		String patientID = pat.getPatientID();
-		Vector<StudyRecord> pstudies = DCMAccessManager.getPatientStudies(patientID, lookBack);
-		Vector<PACSStudy> studyInstances = new Vector<PACSStudy>();
-		Vector<USStudyInstances> dicomInstances = new Vector<USStudyInstances>();
-		Vector<FEMModel> femInstances = new Vector<FEMModel>();
-		Vector<String> createdCMSNodes = new Vector<String>();
-
-		for (StudyRecord rec : pstudies) {
-			PACSStudy newStudy = new PACSStudy(patientID, rec.getStudyInstanceUID(), rec.getStudyDate(), rec.getStudyDescription());
-			studyInstances.add(newStudy);
-			try {
-
-				Vector<InstanceRecord> instances = DCMAccessManager.getStudyInstances(rec.getStudyInstanceUID(), lookBack);
-
-				PACSInstanceprocessor processInstances = new PACSInstanceprocessor(this.getClass().getSimpleName(), resourceManger, patientID, rec.getStudyInstanceUID(), instances);
-
-				Vector<USStudyInstances> dinst = processInstances.getPACSInstances();
-				Vector<FEMModel> feminst = processInstances.getFEMModels();
-				dicomInstances.addAll(dinst);
-				femInstances.addAll(feminst);
-
-				log.log(Level.FINE, "Study " + rec.getStudyInstanceUID() + " has " + dinst.size() + " instances and " + feminst.size() + " models");
-				processInstances.cleanup();
-				createdCMSNodes.addAll(processInstances.getCreatedNodes());
-			} catch (Exception ejbEx) {
-				createdAllRecords = false;
-				log.log(Level.INFO, "Exception occured while adding study record with ID " + rec.getStudyInstanceUID() + "\n" + ejbEx);
-				ejbEx.printStackTrace();
-			}
-		}
-		rInit.taskCompleted();
-		// Perform atomic operations
-		if (createdAllRecords) {
-			if ((dicomInstances.size() + femInstances.size()) > 0) {
-				// Add the patient to ensure foreign key consistency
-				Patient entity = null;
-				if (!refresh) { // new entry
-					entity = new Patient(pat.getPatientID(), pat.getPatientName(), pat.getPatientBirthDate(), pat.getPatientSex());
-				}
-				patientRecord.batchAdd(entity, studyInstances, dicomInstances, femInstances);
-				// Hit the database
-				// entityManager.flush();
-				log.log(Level.INFO, "Successfully added patient " + pat.getPatientID() + " record ");
-				rInit.getBatchProcessSubmissions().remove(pat.getPatientID());
-			} else {
-				log.log(Level.INFO, "Did not add patient " + pat.getPatientID() + " record as no instance information has been uploaded ");
-			}
-		} else {
-			// Remove all cms nodes
-			try {
-				resourceManger.removeCMSNodes(createdCMSNodes);
-			} catch (Exception exx) {
-				log.log(Level.INFO, "" + exx);
-			}
-			log.log(Level.INFO, "****************************************");
-			log.log(Level.INFO, "Failed to add patient " + patientID);
-			log.log(Level.INFO, "****************************************");
-		}
-	}
-*/
 	public String exportModel(String instanceID) throws Exception {
 		FEMModel model = femmodelsBean.getModel(instanceID);
 		if (model != null) {
@@ -421,32 +271,5 @@ public class ICMADatabaseAdministration implements ICMADatabaseAdministrationRem
 		return null;
 
 	}
-
-/*	public JSONObject getModelSpeckleMetaData(String instanceID) throws Exception {
-		FEMModel model = femmodelsBean.getModel(instanceID);
-		if (model != null) {
-			String modelPk = "" + model.getPk();
-			String q = "SELECT p from " + FEMModelModification.class.getName() + " p where p.id = :modelid and p.metadata is not null";
-			Query query = entityManager.createQuery(q).setParameter("modelid", modelPk);
-			List<FEMModelModification> models = query.getResultList();
-			String metaData = models.get(0).getMetadata();
-			CMSContent dicom = resourceManger.getCMSNodeAt(metaData);
-
-			JSONObject speckleData = ICMAMetaData.getSpeckleXML(new ByteArrayInputStream(dicom.output.toByteArray()));
-			JSONObject obj = new JSONObject();
-			if(speckleData.containsKey("SPECKLETRACKINGOUTPUT"))
-				obj.put("speckleoutput", speckleData.get("SPECKLETRACKINGOUTPUT"));
-			if(speckleData.containsKey("SPECKLETRACKINGINPUT"))
-				obj.put("speckleinput", speckleData.get("SPECKLETRACKINGINPUT"));
-			obj.put("name",model.getModelName());
-			obj.put("patientID", model.getPatientID());
-			obj.put("studyid", model.getStudyID());
-			obj.put("seriesid", model.getSeriesID());
-			obj.put("annotation", model.getAnnotation());
-			obj.put("author", model.getAuthor());
-			return obj;
-		}
-		return null;
-	}*/
 
 }
