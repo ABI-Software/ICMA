@@ -1858,7 +1858,11 @@ define([
 				var pgls = this.computePGLS(strainData);
 				this.specklePGLSTextBox.set("value",pgls);
 				
-				this.strainchart.chart.render();
+				try{
+					this.strainchart.chart.render();
+				}catch(e){
+					
+				}
 				this.strainchartLegend.refresh();
 				this.refreshingGraph = false;
 			}
@@ -2184,7 +2188,11 @@ define([
             
             
             //Render the graph
-            this.strainchart.chart.render();
+            try{
+            	this.strainchart.chart.render();
+            }catch(e){//handle mozilla
+            	
+            }
                        
             this.strainchartLegend = new Legend({
             	chart: this.strainchart,
