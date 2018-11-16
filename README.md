@@ -1,14 +1,15 @@
 ICMA
 ====
-
+********************************************************
 Cardiac ultrasound and MRI image processing and analysis
+********************************************************
 
-Code for various modules of the ICMA project are available in the CPP and J2EE folders. As their names imply, CPP contains code written in C++, while the J2EE based code is available in the J2EE folder.
+Update Nov 2018
+---------------
+The browser based front end of ICMA 2015 release has ceased to work due to changes in browser technologies.
+A python based GUI tool that provides almost all the facilities has been developed. The tool and the code is available in the Python subdirectory. To run the tool, download the contents of the ICMA2.0 subdirectory and follow the instructions provided in ICMA2.0/README
 
-Each C++ module contains a test case in the src/Testing folder and the external software (and the type of build) required to build these modules are available in src/Release_Notes.txt. 
-
-The J2EE/JBOSSInstallation folder provides the steps that need to be followed to install the J2EE components on a JBOSS AS 7.1.1 instance. It also has support files and sql scripts to create the database.
-
+Source code (in folders CPP and, J2EE) from the previous release have not be removed. However, they will no longer be maintained or supported.
 
 Best Wishes
 
